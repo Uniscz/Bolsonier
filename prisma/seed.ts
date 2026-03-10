@@ -76,6 +76,7 @@ async function main() {
   await prisma.wallPost.createMany({ data: initialWallPosts });
 
   const existingPoll = await prisma.poll.findFirst();
+
   if (!existingPoll) {
     await prisma.poll.create({
       data: {
@@ -83,7 +84,10 @@ async function main() {
         description: initialPoll.description,
         isActive: true,
         options: {
-          create: initialPoll.options.map((label, index) => ({ label, sortOrder: index + 1 }))
+          create: initialPoll.options.map((label, index) => ({
+            label,
+            sortOrder: index + 1
+          }))
         }
       }
     });
