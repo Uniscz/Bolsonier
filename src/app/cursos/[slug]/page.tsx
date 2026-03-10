@@ -5,7 +5,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { prisma } from "@/lib/prisma";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug?: string }>;
 };
 
 export async function generateStaticParams() {
@@ -13,20 +13,32 @@ export async function generateStaticParams() {
     select: { slug: true }
   });
 
-  return courses.map((course) => ({
-    slug: course.slug
-  }));
+  return courses
+    .filter((course) => Boolean(course.slug))
+    .map((course) => ({
+      slug: course.slug
+    }));
 }
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
+
+  if (!slug) {
+    return buildMetadata({
+      title: "Curso",
+      pathname: "/cursos"
+    });
+  }
 
   const course = await prisma.course.findUnique({
     where: { slug }
   });
 
   if (!course) {
-    return buildMetadata({ title: "Curso" });
+    return buildMetadata({
+      title: "Curso",
+      pathname: "/cursos"
+    });
   }
 
   return buildMetadata({
@@ -38,6 +50,8 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function CourseDetailPage({ params }: Props) {
   const { slug } = await params;
+
+  if (!slug) notFound();
 
   const course = await prisma.course.findUnique({
     where: { slug }
