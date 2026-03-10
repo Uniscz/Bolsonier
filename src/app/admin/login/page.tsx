@@ -1,13 +1,9 @@
 import { redirect } from "next/navigation";
 import { createAdminSession, getAdminSession, verifyAdminPassword } from "@/lib/auth";
 
-export default async function AdminLoginPage({
-  searchParams
-}: {
-  searchParams: { next?: string };
-}) {
+export default async function AdminLoginPage() {
   const session = await getAdminSession();
-  if (session) redirect(searchParams.next || "/admin");
+  if (session) redirect("/admin");
 
   async function login(formData: FormData) {
     "use server";
@@ -16,11 +12,11 @@ export default async function AdminLoginPage({
     const isValid = await verifyAdminPassword(password);
 
     if (!isValid) {
-      redirect("/admin/login?error=1");
+      redirect("/admin/login");
     }
 
     await createAdminSession(process.env.ADMIN_EMAIL || "admin");
-    redirect(searchParams.next || "/admin");
+    redirect("/admin");
   }
 
   return (
@@ -32,6 +28,7 @@ export default async function AdminLoginPage({
           <p className="mt-4 text-sm leading-6 text-zinc-400">
             Acesso restrito à edição de conteúdo, mural e dados institucionais.
           </p>
+
           <div className="mt-6 grid gap-4">
             <label className="grid gap-2 text-sm">
               <span>Senha</span>
@@ -44,8 +41,11 @@ export default async function AdminLoginPage({
               />
             </label>
           </div>
+
           <div className="mt-6">
-            <button className="btn-primary w-full">Entrar</button>
+            <button type="submit" className="btn-primary w-full">
+              Entrar
+            </button>
           </div>
         </form>
       </div>
