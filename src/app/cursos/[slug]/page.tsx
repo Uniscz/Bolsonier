@@ -8,6 +8,16 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export async function generateStaticParams() {
+  const courses = await prisma.course.findMany({
+    select: { slug: true }
+  });
+
+  return courses.map((course) => ({
+    slug: course.slug
+  }));
+}
+
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
 
