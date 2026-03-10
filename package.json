@@ -5,7 +5,8 @@
   "description": "Bolsonier Studios — plataforma autoral, institucional e narrativa.",
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && prisma db push && next build --no-lint",
+    "build": "prisma generate && next build --no-lint",
+    "postinstall": "prisma generate",
     "start": "next start",
     "lint": "next lint",
     "db:push": "prisma db push",

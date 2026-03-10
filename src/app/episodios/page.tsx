@@ -2,6 +2,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { buildMetadata } from "@/lib/metadata";
 import { prisma } from "@/lib/prisma";
+export const dynamic = "force-dynamic";
 
 type SearchParams = Promise<{
   series?: string;

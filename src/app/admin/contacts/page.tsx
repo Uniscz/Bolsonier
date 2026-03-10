@@ -2,6 +2,7 @@ import { markContact } from "@/app/admin/actions";
 import { AdminTable } from "@/components/admin-table";
 import { prisma } from "@/lib/prisma";
 import { formatDate } from "@/lib/utils";
+export const dynamic = "force-dynamic";
 
 export default async function AdminContactsPage() {
   const contacts = await prisma.contactSubmission.findMany({

@@ -3,6 +3,7 @@ import { AdminForm } from "@/components/admin-form";
 import { AdminTable } from "@/components/admin-table";
 import { prisma } from "@/lib/prisma";
 import { formatDate } from "@/lib/utils";
+export const dynamic = "force-dynamic";
 
 function linesFromOptions(options: { label: string }[]) {
   return options.map((option) => option.label).join("\n");

@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createAdminSession, getAdminSession, verifyAdminPassword } from "@/lib/auth";
+export const dynamic = "force-dynamic";
 
 export default async function AdminLoginPage() {
   const session = await getAdminSession();

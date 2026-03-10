@@ -2,6 +2,7 @@ import { deleteCourse, saveCourse } from "@/app/admin/actions";
 import { AdminForm } from "@/components/admin-form";
 import { AdminTable } from "@/components/admin-table";
 import { prisma } from "@/lib/prisma";
+export const dynamic = "force-dynamic";
 
 function linesFromJson(value: unknown) {
   return Array.isArray(value) ? value.map((item) => (typeof item === "string" ? item : "")).filter(Boolean).join("\n") : "";

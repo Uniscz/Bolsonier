@@ -4,22 +4,11 @@ import { PageHero } from "@/components/page-hero";
 import { buildMetadata } from "@/lib/metadata";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   params: Promise<{ slug: string }>;
 };
-
-// Gera as páginas estáticas no momento do build (Evita o erro do seu log)
-export async function generateStaticParams() {
-  const courses = await prisma.course.findMany({
-    select: { slug: true }
-  });
-
-  return courses
-    .filter((course) => Boolean(course.slug))
-    .map((course) => ({
-      slug: course.slug
-    }));
-}
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;

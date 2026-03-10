@@ -7,6 +7,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { getCourtSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { formatDate } from "@/lib/utils";
+export const dynamic = "force-dynamic";
 
 export const metadata = buildMetadata({
   title: "Salão dos Rumores",

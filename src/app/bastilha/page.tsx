@@ -5,6 +5,7 @@ import { PageHero } from "@/components/page-hero";
 import { buildMetadata } from "@/lib/metadata";
 import { getSection } from "@/lib/queries";
 import { prisma } from "@/lib/prisma";
+export const dynamic = "force-dynamic";
 
 export const metadata = buildMetadata({
   title: "Bastilha de Bolsonier",

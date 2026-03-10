@@ -3,21 +3,11 @@ import { PageHero } from "@/components/page-hero";
 import { buildMetadata } from "@/lib/metadata";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   params: Promise<{ slug?: string }>;
 };
-
-export async function generateStaticParams() {
-  const projects = await prisma.project.findMany({
-    select: { slug: true }
-  });
-
-  return projects
-    .filter((project) => Boolean(project.slug))
-    .map((project) => ({
-      slug: project.slug
-    }));
-}
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;

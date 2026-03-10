@@ -2,6 +2,7 @@ import { deleteTestimonial, saveTestimonial } from "@/app/admin/actions";
 import { AdminForm } from "@/components/admin-form";
 import { AdminTable } from "@/components/admin-table";
 import { prisma } from "@/lib/prisma";
+export const dynamic = "force-dynamic";
 
 export default async function AdminTestimonialsPage() {
   const testimonials = await prisma.testimonial.findMany({

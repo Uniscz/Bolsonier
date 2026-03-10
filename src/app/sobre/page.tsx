@@ -3,6 +3,7 @@ import { PageHero } from "@/components/page-hero";
 import { FeatureCard } from "@/components/cards";
 import { buildMetadata } from "@/lib/metadata";
 import { getSection } from "@/lib/queries";
+export const dynamic = "force-dynamic";
 
 export const metadata = buildMetadata({
   title: "Sobre",

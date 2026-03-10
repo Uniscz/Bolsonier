@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { buildMetadata } from "@/lib/metadata";
 import { getSection } from "@/lib/queries";
 import { prisma } from "@/lib/prisma";
+export const dynamic = "force-dynamic";
 
 export const metadata = buildMetadata({
   title: "Home",

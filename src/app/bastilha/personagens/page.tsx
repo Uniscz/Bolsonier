@@ -1,6 +1,7 @@
 import { PageHero } from "@/components/page-hero";
 import { buildMetadata } from "@/lib/metadata";
 import { prisma } from "@/lib/prisma";
+export const dynamic = "force-dynamic";
 
 export const metadata = buildMetadata({
   title: "Personagens da Bastilha",
