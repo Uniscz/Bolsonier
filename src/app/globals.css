@@ -73,7 +73,8 @@ a {
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-full border border-white/12 px-5 py-3 text-sm font-medium text-white transition hover:border-white/30 hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50;
+    @apply inline-flex items-center justify-center rounded-full border px-5 py-3 text-sm font-medium text-white transition hover:border-white/30 hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50;
+    border-color: rgba(255, 255, 255, 0.12);
   }
 
   .input-base {
