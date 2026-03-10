@@ -5,9 +5,10 @@ import { buildMetadata } from "@/lib/metadata";
 import { prisma } from "@/lib/prisma";
 
 type Props = {
-  params: Promise<{ slug?: string }>;
+  params: Promise<{ slug: string }>;
 };
 
+// Gera as páginas estáticas no momento do build (Evita o erro do seu log)
 export async function generateStaticParams() {
   const courses = await prisma.course.findMany({
     select: { slug: true }
@@ -23,23 +24,13 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
 
-  if (!slug) {
-    return buildMetadata({
-      title: "Curso",
-      pathname: "/cursos"
-    });
-  }
+  if (!slug) return buildMetadata({ title: "Curso", pathname: "/cursos" });
 
   const course = await prisma.course.findUnique({
     where: { slug }
   });
 
-  if (!course) {
-    return buildMetadata({
-      title: "Curso",
-      pathname: "/cursos"
-    });
-  }
+  if (!course) return buildMetadata({ title: "Curso", pathname: "/cursos" });
 
   return buildMetadata({
     title: course.title,
@@ -51,6 +42,7 @@ export async function generateMetadata({ params }: Props) {
 export default async function CourseDetailPage({ params }: Props) {
   const { slug } = await params;
 
+  // Trava de segurança: Se não tiver slug ou não achar o curso, retorna 404
   if (!slug) notFound();
 
   const course = await prisma.course.findUnique({
@@ -61,9 +53,7 @@ export default async function CourseDetailPage({ params }: Props) {
 
   const modules = Array.isArray(course.modules) ? (course.modules as string[]) : [];
   const bonuses = Array.isArray(course.bonuses) ? (course.bonuses as string[]) : [];
-  const faq = Array.isArray(course.faq)
-    ? (course.faq as { q: string; a: string }[])
-    : [];
+  const faq = Array.isArray(course.faq) ? (course.faq as { q: string; a: string }[]) : [];
 
   const ctaHref = course.ctaHref || course.waitlistUrl || "/contato";
 
