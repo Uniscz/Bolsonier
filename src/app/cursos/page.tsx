@@ -1,49 +1,85 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { PageHero } from "@/components/page-hero";
 import { buildMetadata } from "@/lib/metadata";
 import { prisma } from "@/lib/prisma";
 
-export const metadata = buildMetadata({
-  title: "Cursos",
-  pathname: "/cursos"
-});
+type Props = {
+  params: Promise<{ slug: string }>;
+};
 
-export default async function CursosPage() {
-  const courses = await prisma.course.findMany({
-    orderBy: [{ featured: "desc" }, { createdAt: "desc" }]
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
+  const course = await prisma.course.findUnique({ where: { slug } });
+
+  if (!course) return buildMetadata({ title: "Curso" });
+
+  return buildMetadata({
+    title: course.title,
+    description: course.excerpt,
+    pathname: `/cursos/${course.slug}`
   });
+}
+
+export default async function CourseDetailPage({ params }: Props) {
+  const { slug } = await params;
+  const course = await prisma.course.findUnique({ where: { slug } });
+
+  if (!course) notFound();
+
+  const modules = Array.isArray(course.modules) ? (course.modules as string[]) : [];
+  const bonuses = Array.isArray(course.bonuses) ? (course.bonuses as string[]) : [];
+  const faq = Array.isArray(course.faq) ? (course.faq as { q: string; a: string }[]) : [];
+
+  const ctaHref = course.ctaHref || course.waitlistUrl || "/contato";
 
   return (
     <>
-      <PageHero
-        eyebrow="Cursos"
-        title="Formação com direção, linguagem e função."
-        body="Cursos pensados para transformar repertório criativo em sistema de produção, identidade e produto."
-      >
-        <p className="text-sm leading-6 text-zinc-400">
-          Estrutura preparada para disponível, pré-venda, lista de espera e páginas individuais.
-        </p>
+      <PageHero eyebrow="Curso" title={course.title} body={course.description}>
+        <div className="space-y-4 text-sm text-zinc-300">
+          <div>Status: {course.status}</div>
+          {course.priceLabel ? <div>{course.priceLabel}</div> : null}
+          <Link href={ctaHref} className="btn-primary">
+            {course.ctaLabel || "Quero saber mais"}
+          </Link>
+        </div>
       </PageHero>
 
       <section className="section-space">
         <div className="container-shell grid gap-5 lg:grid-cols-2">
-          {courses.map((course) => (
-            <div key={course.id} className="panel p-6">
-              <div className="kicker">{course.status}</div>
-              <h2 className="mt-4 font-display text-3xl font-semibold">{course.title}</h2>
-              <p className="mt-4 text-sm leading-6 text-zinc-300">{course.excerpt}</p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Link href={`/cursos/${course.slug}`} className="btn-primary">
-                  Ver curso
-                </Link>
-                {course.priceLabel ? (
-                  <span className="inline-flex items-center rounded-full border border-white/10 px-4 py-3 text-sm text-zinc-300">
-                    {course.priceLabel}
-                  </span>
-                ) : null}
+          <div className="panel p-6">
+            <div className="kicker">Módulos</div>
+            <ul className="mt-5 grid gap-4 text-sm text-zinc-300">
+              {modules.map((module) => (
+                <li key={module}>{module}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="panel p-6">
+            <div className="kicker">Bônus</div>
+            <ul className="mt-5 grid gap-4 text-sm text-zinc-300">
+              {bonuses.map((bonus) => (
+                <li key={bonus}>{bonus}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-space border-t border-white/5">
+        <div className="container-shell">
+          <div className="max-w-3xl">
+            <div className="kicker">Perguntas frequentes</div>
+            <h2 className="headline-md mt-4">O que costuma destravar a decisão</h2>
+          </div>
+          <div className="mt-8 grid gap-5">
+            {faq.map((item) => (
+              <div key={item.q} className="panel p-6">
+                <h3 className="text-lg font-semibold">{item.q}</h3>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">{item.a}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
     </>
