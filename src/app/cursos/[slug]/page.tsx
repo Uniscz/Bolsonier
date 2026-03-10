@@ -5,12 +5,20 @@ import { buildMetadata } from "@/lib/metadata";
 import { prisma } from "@/lib/prisma";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata({ params }: Props) {
-  const course = await prisma.course.findUnique({ where: { slug: params.slug } });
-  if (!course) return buildMetadata({ title: "Curso" });
+  const { slug } = await params;
+
+  const course = await prisma.course.findUnique({
+    where: { slug }
+  });
+
+  if (!course) {
+    return buildMetadata({ title: "Curso" });
+  }
+
   return buildMetadata({
     title: course.title,
     description: course.excerpt,
@@ -19,13 +27,19 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function CourseDetailPage({ params }: Props) {
-  const course = await prisma.course.findUnique({ where: { slug: params.slug } });
+  const { slug } = await params;
+
+  const course = await prisma.course.findUnique({
+    where: { slug }
+  });
 
   if (!course) notFound();
 
   const modules = Array.isArray(course.modules) ? (course.modules as string[]) : [];
   const bonuses = Array.isArray(course.bonuses) ? (course.bonuses as string[]) : [];
-  const faq = Array.isArray(course.faq) ? (course.faq as { q: string; a: string }[]) : [];
+  const faq = Array.isArray(course.faq)
+    ? (course.faq as { q: string; a: string }[])
+    : [];
 
   const ctaHref = course.ctaHref || course.waitlistUrl || "/contato";
 
@@ -51,6 +65,7 @@ export default async function CourseDetailPage({ params }: Props) {
               ))}
             </ul>
           </div>
+
           <div className="panel p-6">
             <div className="kicker">Bônus</div>
             <ul className="mt-5 grid gap-4 text-sm text-zinc-300">
@@ -68,6 +83,7 @@ export default async function CourseDetailPage({ params }: Props) {
             <div className="kicker">Perguntas frequentes</div>
             <h2 className="headline-md mt-4">O que costuma destravar a decisão</h2>
           </div>
+
           <div className="mt-8 grid gap-5">
             {faq.map((item) => (
               <div key={item.q} className="panel p-6">
