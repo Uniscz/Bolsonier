@@ -1,71 +1,65 @@
-import { logoutAdmin } from "@/app/admin/actions";
-import { AdminTable } from "@/components/admin-table";
-import { prisma } from "@/lib/prisma";
-import { formatDate } from "@/lib/utils";
+import { redirect } from "next/navigation";
+import { createAdminSession, getAdminSession, verifyAdminPassword } from "@/lib/auth";
 
-export default async function AdminDashboardPage() {
-  const [projects, courses, contacts, posts] = await Promise.all([
-    prisma.project.count(),
-    prisma.course.count(),
-    prisma.contactSubmission.findMany({
-      orderBy: { createdAt: "desc" },
-      take: 5
-    }),
-    prisma.wallPost.findMany({
-      orderBy: { createdAt: "desc" },
-      take: 5
-    })
-  ]);
+type LoginSearchParams = Promise<{
+  next?: string;
+  error?: string;
+}>;
+
+export default async function AdminLoginPage({
+  searchParams
+}: {
+  searchParams: LoginSearchParams;
+}) {
+  const resolvedSearchParams = await searchParams;
+  const nextPath =
+    typeof resolvedSearchParams?.next === "string" && resolvedSearchParams.next.length > 0
+      ? resolvedSearchParams.next
+      : "/admin";
+
+  const session = await getAdminSession();
+  if (session) redirect(nextPath);
+
+  async function login(formData: FormData) {
+    "use server";
+
+    const password = String(formData.get("password") || "");
+    const isValid = await verifyAdminPassword(password);
+
+    if (!isValid) {
+      redirect("/admin/login?error=1");
+    }
+
+    await createAdminSession(process.env.ADMIN_EMAIL || "admin");
+    redirect(nextPath);
+  }
 
   return (
-    <>
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <div className="kicker">Painel</div>
-          <h1 className="mt-3 font-display text-4xl font-semibold">Resumo operacional</h1>
-        </div>
-        <form action={logoutAdmin}>
-          <button className="btn-secondary">Sair</button>
+    <section className="section-space">
+      <div className="container-shell flex justify-center">
+        <form action={login} className="panel w-full max-w-md p-8">
+          <div className="kicker">Admin</div>
+          <h1 className="mt-4 font-display text-4xl font-semibold">Entrar no painel</h1>
+          <p className="mt-4 text-sm leading-6 text-zinc-400">
+            Acesso restrito à edição de conteúdo, mural e dados institucionais.
+          </p>
+          <div className="mt-6 grid gap-4">
+            <label className="grid gap-2 text-sm">
+              <span>Senha</span>
+              <input
+                name="password"
+                type="password"
+                className="input-base"
+                placeholder="Sua senha"
+                required
+              />
+            </label>
+          </div>
+          <div className="mt-6">
+            <button className="btn-primary w-full">Entrar</button>
+          </div>
         </form>
       </div>
-
-      <div className="grid gap-5 md:grid-cols-3">
-        <div className="panel p-6">
-          <div className="kicker">Projetos</div>
-          <div className="mt-4 font-display text-4xl font-semibold">{projects}</div>
-        </div>
-        <div className="panel p-6">
-          <div className="kicker">Cursos</div>
-          <div className="mt-4 font-display text-4xl font-semibold">{courses}</div>
-        </div>
-        <div className="panel p-6">
-          <div className="kicker">Contatos recentes</div>
-          <div className="mt-4 font-display text-4xl font-semibold">{contacts.length}</div>
-        </div>
-      </div>
-
-      <AdminTable
-        title="Mensagens recentes"
-        columns={["Data", "Nome", "E-mail", "Categoria", "Status"]}
-        rows={contacts.map((contact) => [
-          formatDate(contact.createdAt),
-          contact.name,
-          contact.email,
-          contact.type,
-          contact.status
-        ])}
-      />
-
-      <AdminTable
-        title="Atividade do mural"
-        columns={["Data", "Autor", "Tipo", "Título"]}
-        rows={posts.map((post) => [
-          formatDate(post.createdAt),
-          post.authorName,
-          post.kind,
-          post.title || "Sem título"
-        ])}
-      />
-    </>
+    </section>
   );
 }
