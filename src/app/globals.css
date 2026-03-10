@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 10 10 13;
+  --foreground: 244 244 245;
+  --muted: 156 163 175;
+  --border: 39 39 42;
+  --panel: 16 16 20;
+  --accent: 217 119 6;
+  --accent-2: 124 58 237;
+  --success: 34 197 94;
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background text-foreground antialiased;
+  background-image:
+    radial-gradient(circle at top right, rgba(124,58,237,0.12), transparent 30%),
+    radial-gradient(circle at top left, rgba(217,119,6,0.1), transparent 26%),
+    linear-gradient(180deg, rgba(255,255,255,0.015), transparent 20%);
+}
+
+::selection {
+  background: rgba(124, 58, 237, 0.28);
+  color: white;
+}
+
+a {
+  @apply transition-colors;
+}
+
+@layer components {
+  .container-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-space {
+    @apply py-16 md:py-24;
+  }
+
+  .panel {
+    @apply rounded-3xl border border-border bg-panel/85 shadow-panel backdrop-blur;
+  }
+
+  .kicker {
+    @apply text-xs font-semibold uppercase tracking-[0.26em] text-muted;
+  }
+
+  .display-title {
+    @apply font-display text-4xl font-semibold tracking-tight md:text-6xl;
+  }
+
+  .headline-md {
+    @apply font-display text-3xl font-semibold tracking-tight md:text-5xl;
+  }
+
+  .body-lg {
+    @apply text-base leading-7 text-zinc-300 md:text-lg;
+  }
+
+  .nav-link {
+    @apply text-sm text-zinc-300 transition hover:text-white;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full border border-white/10 bg-white px-5 py-3 text-sm font-medium text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-white/12 px-5 py-3 text-sm font-medium text-white transition hover:border-white/30 hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50;
+  }
+
+  .input-base {
+    @apply w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white outline-none transition placeholder:text-zinc-500 focus:border-white/30 focus:ring-2 focus:ring-white/10;
+  }
+}
