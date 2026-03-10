@@ -4,14 +4,41 @@ import { buildMetadata } from "@/lib/metadata";
 import { prisma } from "@/lib/prisma";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug?: string }>;
 };
+
+export async function generateStaticParams() {
+  const projects = await prisma.project.findMany({
+    select: { slug: true }
+  });
+
+  return projects
+    .filter((project) => Boolean(project.slug))
+    .map((project) => ({
+      slug: project.slug
+    }));
+}
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
-  const project = await prisma.project.findUnique({ where: { slug } });
 
-  if (!project) return buildMetadata({ title: "Projeto" });
+  if (!slug) {
+    return buildMetadata({
+      title: "Projeto",
+      pathname: "/projetos"
+    });
+  }
+
+  const project = await prisma.project.findUnique({
+    where: { slug }
+  });
+
+  if (!project) {
+    return buildMetadata({
+      title: "Projeto",
+      pathname: "/projetos"
+    });
+  }
 
   return buildMetadata({
     title: project.title,
@@ -22,6 +49,8 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function ProjectDetailPage({ params }: Props) {
   const { slug } = await params;
+
+  if (!slug) notFound();
 
   const project = await prisma.project.findUnique({
     where: { slug }
