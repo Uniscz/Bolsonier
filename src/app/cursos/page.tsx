@@ -1,121 +1,54 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { PageHero } from "@/components/page-hero";
 import { buildMetadata } from "@/lib/metadata";
 import { prisma } from "@/lib/prisma";
 
-type Props = {
-  params: Promise<{ slug?: string }>;
-};
+export const metadata = buildMetadata({
+  title: "Cursos",
+  description: "Conheça nossos cursos disponíveis.",
+  pathname: "/cursos"
+});
 
-export async function generateStaticParams() {
+export default async function CoursesPage() {
+  // Busca todos os cursos no banco de dados para listar
   const courses = await prisma.course.findMany({
-    select: { slug: true }
+    orderBy: { createdAt: 'desc' }
   });
-
-  return courses
-    .filter((course) => Boolean(course.slug))
-    .map((course) => ({
-      slug: course.slug
-    }));
-}
-
-export async function generateMetadata({ params }: Props) {
-  const { slug } = await params;
-
-  if (!slug) {
-    return buildMetadata({
-      title: "Curso",
-      pathname: "/cursos"
-    });
-  }
-
-  const course = await prisma.course.findUnique({
-    where: { slug }
-  });
-
-  if (!course) {
-    return buildMetadata({
-      title: "Curso",
-      pathname: "/cursos"
-    });
-  }
-
-  return buildMetadata({
-    title: course.title,
-    description: course.excerpt,
-    pathname: `/cursos/${course.slug}`
-  });
-}
-
-export default async function CourseDetailPage({ params }: Props) {
-  const { slug } = await params;
-
-  if (!slug) notFound();
-
-  const course = await prisma.course.findUnique({
-    where: { slug }
-  });
-
-  if (!course) notFound();
-
-  const modules = Array.isArray(course.modules) ? (course.modules as string[]) : [];
-  const bonuses = Array.isArray(course.bonuses) ? (course.bonuses as string[]) : [];
-  const faq = Array.isArray(course.faq)
-    ? (course.faq as { q: string; a: string }[])
-    : [];
-
-  const ctaHref = course.ctaHref || course.waitlistUrl || "/contato";
 
   return (
     <>
-      <PageHero eyebrow="Curso" title={course.title} body={course.description}>
-        <div className="space-y-4 text-sm text-zinc-300">
-          <div>Status: {course.status}</div>
-          {course.priceLabel ? <div>{course.priceLabel}</div> : null}
-          <Link href={ctaHref} className="btn-primary">
-            {course.ctaLabel || "Quero saber mais"}
-          </Link>
-        </div>
-      </PageHero>
-
+      <PageHero 
+        eyebrow="Cursos" 
+        title="Nossos Cursos" 
+        body="Escolha o melhor treinamento para você e comece a aprender hoje mesmo." 
+      />
+      
       <section className="section-space">
-        <div className="container-shell grid gap-5 lg:grid-cols-2">
-          <div className="panel p-6">
-            <div className="kicker">Módulos</div>
-            <ul className="mt-5 grid gap-4 text-sm text-zinc-300">
-              {modules.map((module) => (
-                <li key={module}>{module}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="panel p-6">
-            <div className="kicker">Bônus</div>
-            <ul className="mt-5 grid gap-4 text-sm text-zinc-300">
-              {bonuses.map((bonus) => (
-                <li key={bonus}>{bonus}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-space border-t border-white/5">
         <div className="container-shell">
-          <div className="max-w-3xl">
-            <div className="kicker">Perguntas frequentes</div>
-            <h2 className="headline-md mt-4">O que costuma destravar a decisão</h2>
-          </div>
-
-          <div className="mt-8 grid gap-5">
-            {faq.map((item) => (
-              <div key={item.q} className="panel p-6">
-                <h3 className="text-lg font-semibold">{item.q}</h3>
-                <p className="mt-3 text-sm leading-6 text-zinc-400">{item.a}</p>
-              </div>
-            ))}
-          </div>
+          {courses.length === 0 ? (
+            <p className="text-zinc-400">Nenhum curso encontrado no momento.</p>
+          ) : (
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {courses.map((course) => (
+                <div key={course.id} className="panel p-6 flex flex-col">
+                  <h3 className="text-lg font-bold text-white mb-2">{course.title}</h3>
+                  <p className="text-sm text-zinc-400 mb-4 flex-grow">
+                    {course.excerpt || course.description}
+                  </p>
+                  
+                  <div className="mt-auto pt-4 border-t border-white/10 flex justify-between items-center">
+                    <span className="text-sm text-zinc-300 font-medium">
+                      {course.priceLabel || course.status}
+                    </span>
+                    {/* Aqui é onde ele clica e vai para a página dinâmica [slug] */}
+                    <Link href={`/cursos/${course.slug}`} className="btn-primary text-sm py-2 px-4">
+                      Ver detalhes
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </>
