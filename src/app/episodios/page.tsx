@@ -3,10 +3,10 @@ import { PageHero } from "@/components/page-hero";
 import { buildMetadata } from "@/lib/metadata";
 import { prisma } from "@/lib/prisma";
 
-type SearchParams = {
+type SearchParams = Promise<{
   series?: string;
   season?: string;
-};
+}>;
 
 export const metadata = buildMetadata({
   title: "Episódios",
@@ -18,8 +18,11 @@ export default async function EpisodiosPage({
 }: {
   searchParams: SearchParams;
 }) {
-  const seriesFilter = searchParams.series;
-  const seasonFilter = searchParams.season ? Number(searchParams.season) : undefined;
+  const resolvedSearchParams = await searchParams;
+  const seriesFilter = resolvedSearchParams?.series;
+  const seasonFilter = resolvedSearchParams?.season
+    ? Number(resolvedSearchParams.season)
+    : undefined;
 
   const [episodes, seriesList] = await Promise.all([
     prisma.episode.findMany({
