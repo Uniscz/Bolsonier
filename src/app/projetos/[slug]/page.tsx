@@ -4,12 +4,15 @@ import { buildMetadata } from "@/lib/metadata";
 import { prisma } from "@/lib/prisma";
 
 type Props = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata({ params }: Props) {
-  const project = await prisma.project.findUnique({ where: { slug: params.slug } });
+  const { slug } = await params;
+  const project = await prisma.project.findUnique({ where: { slug } });
+
   if (!project) return buildMetadata({ title: "Projeto" });
+
   return buildMetadata({
     title: project.title,
     description: project.summary,
@@ -18,19 +21,17 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function ProjectDetailPage({ params }: Props) {
+  const { slug } = await params;
+
   const project = await prisma.project.findUnique({
-    where: { slug: params.slug }
+    where: { slug }
   });
 
   if (!project) notFound();
 
   return (
     <>
-      <PageHero
-        eyebrow={project.category}
-        title={project.title}
-        body={project.summary}
-      >
+      <PageHero eyebrow={project.category} title={project.title} body={project.summary}>
         <div className="space-y-3 text-sm text-zinc-300">
           <div>Status: {project.status}</div>
           {project.launchLabel ? <div>{project.launchLabel}</div> : null}
