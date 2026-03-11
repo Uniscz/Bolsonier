@@ -40,7 +40,7 @@ export function PollCard({ poll, canVote }: PollCardProps) {
     <div className="panel p-6">
       <div className="kicker">Enquete da semana</div>
       <h3 className="mt-3 font-display text-2xl font-semibold">{poll.title}</h3>
-      {poll.description ? <p className="mt-3 text-sm text-zinc-400">{poll.description}</p> : null}
+      {poll.description ? <p className="mt-3 text-sm text-muted">{poll.description}</p> : null}
       <div className="mt-5 grid gap-3">
         {poll.options.map((option) => (
           <button
@@ -48,17 +48,17 @@ export function PollCard({ poll, canVote }: PollCardProps) {
             type="button"
             onClick={() => vote(option.id)}
             disabled={!canVote}
-            className="flex items-center justify-between rounded-2xl border border-white/10 px-4 py-3 text-left transition hover:border-white/30 hover:bg-white/5 disabled:opacity-50"
+            className="flex items-center justify-between rounded-sm border border-border px-4 py-3 text-left transition hover:border-white/30 hover:bg-panel disabled:opacity-50"
           >
             <span>{option.label}</span>
-            <span className="text-sm text-zinc-400">{option.votes} votos</span>
+            <span className="text-sm text-muted">{option.votes} votos</span>
           </button>
         ))}
       </div>
       {!canVote ? (
-        <p className="mt-4 text-sm text-zinc-500">Entre com seu passe da corte para votar.</p>
+        <p className="mt-4 text-sm text-subtle">Entre com seu passe da corte para votar.</p>
       ) : null}
-      {message ? <p className="mt-4 text-sm text-zinc-300">{message}</p> : null}
+      {message ? <p className="mt-4 text-sm text-foreground/80">{message}</p> : null}
     </div>
   );
 }

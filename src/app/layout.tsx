@@ -1,18 +1,31 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { buildOrganizationSchema } from "@/lib/metadata";
 
-const fontSans = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const fontDisplay = Space_Grotesk({ subsets: ["latin"], variable: "--font-display" });
+const fontSans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["300", "400", "500", "600"]
+});
+
+const fontDisplay = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"]
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
-  title: "Bolsonier Studios",
+  title: {
+    default: "Bastilha de Bolsonier",
+    template: "%s — Bastilha de Bolsonier"
+  },
   description:
-    "Produtora criativa autoral para universos narrativos, direção visual, IA aplicada e produtos com identidade real."
+    "Na Bastilha de Bolsonier, o poder não se proclama, administra-se. Uma obra autoral de Bolsonier Studios."
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -20,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={`${fontSans.variable} ${fontDisplay.variable}`}>
+      <body className={`${fontSans.variable} ${fontDisplay.variable} font-sans`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}

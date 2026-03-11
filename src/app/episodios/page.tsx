@@ -1,105 +1,205 @@
-import Link from "next/link";
-import { PageHero } from "@/components/page-hero";
-import { buildMetadata } from "@/lib/metadata";
 import { prisma } from "@/lib/prisma";
+import { Reveal } from "@/components/reveal";
+import { buildMetadata } from "@/lib/metadata";
+
 export const dynamic = "force-dynamic";
 
-type SearchParams = Promise<{
-  series?: string;
-  season?: string;
-}>;
-
 export const metadata = buildMetadata({
-  title: "Episódios",
+  title: "Atos",
   pathname: "/episodios"
 });
 
-export default async function EpisodiosPage({
-  searchParams
-}: {
-  searchParams: SearchParams;
-}) {
-  const resolvedSearchParams = await searchParams;
-  const seriesFilter = resolvedSearchParams?.series;
-  const seasonFilter = resolvedSearchParams?.season
-    ? Number(resolvedSearchParams.season)
-    : undefined;
+const actsFallback = [
+  { id: "1", title: "O Peso do Nome", actLabel: "Ato I", series: "Bastilha de Bolsonier", summary: "A Bastilha se apresenta. A soberana recebe. A corte observa. Ninguém é inocente.", thumbnailUrl: null, videoUrl: null, featured: true, publishedAt: new Date() },
+  { id: "2", title: "O Que Não Se Diz", actLabel: "Ato II", series: "Bastilha de Bolsonier", summary: "O silêncio começa a custar mais do que a palavra. Alianças se formam sem declaração.", thumbnailUrl: null, videoUrl: null, featured: true, publishedAt: new Date() },
+  { id: "3", title: "A Visita do Desterrado", actLabel: "Ato III", series: "Bastilha de Bolsonier", summary: "Nicolau retorna. A corte finge indiferença. A soberana não consegue.", thumbnailUrl: null, videoUrl: null, featured: true, publishedAt: new Date() },
+  { id: "4", title: "Jurisdição Pessoal", actLabel: "Ato IV", series: "Bastilha de Bolsonier", summary: "Alexandra impõe sua leitura dos fatos. Ninguém ousa contradizê-la diretamente.", thumbnailUrl: null, videoUrl: null, featured: false, publishedAt: new Date() },
+  { id: "5", title: "Heráldica do Excesso", actLabel: "Ato V", series: "Bastilha de Bolsonier", summary: "Trumpetti chega. A corte sorri. Bastidores fervem.", thumbnailUrl: null, videoUrl: null, featured: false, publishedAt: new Date() },
+  { id: "6", title: "Correntes Invisíveis", actLabel: "Ato VI", series: "Bastilha de Bolsonier", summary: "Érienne move peças que ninguém vê. O equilíbrio começa a ceder.", thumbnailUrl: null, videoUrl: null, featured: false, publishedAt: new Date() },
+];
 
-  const [episodes, seriesList] = await Promise.all([
-    prisma.episode.findMany({
-      where: {
-        ...(seriesFilter ? { series: seriesFilter } : {}),
-        ...(seasonFilter ? { season: seasonFilter } : {})
-      },
-      orderBy: [{ publishedAt: "desc" }]
-    }),
-    prisma.episode.findMany({
-      distinct: ["series"],
-      select: { series: true }
-    })
-  ]);
+export default async function EpisodiosPage() {
+  const dbEpisodes = await prisma.episode.findMany({
+    orderBy: { publishedAt: "desc" }
+  });
+
+  const episodes = dbEpisodes.length > 0 ? dbEpisodes : actsFallback;
+
+  const featured = episodes.filter((e: any) => e.featured);
+  const rest = episodes.filter((e: any) => !e.featured);
 
   return (
     <>
-      <PageHero
-        eyebrow="Biblioteca"
-        title="Episódios, atos e peças em circulação."
-        body="Uma biblioteca pensada para suportar múltiplos projetos, temporadas, atos e formatos."
-      >
-        <div className="grid gap-2 text-sm text-zinc-400">
-          <div>Filtros por projeto e temporada.</div>
-          <div>Link externo ou embed.</div>
-          <div>Estrutura pronta para crescer.</div>
-        </div>
-      </PageHero>
-
-      <section className="section-space">
-        <div className="container-shell grid gap-5 lg:grid-cols-[260px_1fr]">
-          <aside className="panel h-fit p-6">
-            <div className="kicker">Filtros</div>
-            <div className="mt-4 grid gap-3 text-sm">
-              <Link href="/episodios" className="text-zinc-300">
-                Todos
-              </Link>
-              {seriesList.map((item) => (
-                <Link
-                  key={item.series}
-                  href={`/episodios?series=${encodeURIComponent(item.series)}`}
-                  className="text-zinc-400 hover:text-white"
-                >
-                  {item.series}
-                </Link>
-              ))}
-            </div>
-          </aside>
-
-          <div className="grid gap-5">
-            {episodes.map((episode) => (
-              <article key={episode.id} className="panel p-6">
-                <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.18em] text-zinc-500">
-                  <span>{episode.series}</span>
-                  {episode.actLabel ? <span>{episode.actLabel}</span> : null}
-                  {episode.season ? <span>Temporada {episode.season}</span> : null}
-                </div>
-                <h2 className="mt-4 font-display text-3xl font-semibold">{episode.title}</h2>
-                <p className="mt-4 max-w-3xl text-sm leading-6 text-zinc-300">{episode.summary}</p>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {episode.externalUrl ? (
-                    <Link href={episode.externalUrl} target="_blank" className="btn-primary">
-                      Assistir fora do site
-                    </Link>
-                  ) : null}
-                  <span className="inline-flex items-center rounded-full border border-white/10 px-4 py-3 text-sm text-zinc-400">
-                    {new Intl.DateTimeFormat("pt-BR", { dateStyle: "medium" }).format(
-                      episode.publishedAt
-                    )}
-                  </span>
-                </div>
-              </article>
-            ))}
-          </div>
+      {/* ── HERO ──────────────────────────────────────────────── */}
+      <section className="section-space border-b" style={{ borderColor: "rgb(var(--border))" }}>
+        <div className="container-shell">
+          <Reveal>
+            <div className="kicker mb-6">Biblioteca</div>
+            <h1
+              className="font-display mb-6"
+              style={{
+                fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+                fontWeight: 300,
+                lineHeight: 1.06,
+                letterSpacing: "-0.02em",
+                color: "rgb(var(--foreground))"
+              }}
+            >
+              Atos da<br />
+              <em style={{ fontStyle: "italic", color: "rgb(var(--gold))" }}>Bastilha</em>
+            </h1>
+            <p className="body-lg max-w-2xl">
+              Cada ato é um capítulo da queda. A biblioteca viva da Bastilha de Bolsonier, onde o poder se revela e se desfaz.
+            </p>
+          </Reveal>
         </div>
       </section>
+
+      {/* ── ATOS EM DESTAQUE ─────────────────────────────────── */}
+      {featured.length > 0 && (
+        <section className="section-space">
+          <div className="container-shell">
+            <Reveal>
+              <div className="kicker mb-8">Em destaque</div>
+            </Reveal>
+            <div className="grid gap-5 md:grid-cols-3">
+              {featured.slice(0, 3).map((ep: any, i: number) => (
+                <Reveal key={ep.id} className={`delay-${i * 100}`}>
+                  <div className="group act-card">
+                    {/* Thumbnail 9:16 */}
+                    <div
+                      className="relative overflow-hidden"
+                      style={{ aspectRatio: "9/16", maxHeight: "380px" }}
+                    >
+                      {ep.thumbnailUrl ? (
+                        <img
+                          src={ep.thumbnailUrl}
+                          alt={ep.title}
+                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div
+                          className="h-full w-full flex flex-col items-center justify-center gap-3"
+                          style={{ background: "rgb(var(--surface))" }}
+                        >
+                          <div
+                            className="h-16 w-16 border flex items-center justify-center"
+                            style={{ borderColor: "rgba(168,138,80,0.2)" }}
+                          >
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" style={{ color: "rgba(168,138,80,0.4)" }}>
+                              <polygon points="5 3 19 12 5 21 5 3" />
+                            </svg>
+                          </div>
+                          <span className="media-slot-label">
+                            [THUMB_{(ep.actLabel || "ATO").replace(" ", "_").toUpperCase()}]
+                          </span>
+                        </div>
+                      )}
+                      <div
+                        className="absolute inset-0"
+                        style={{ background: "linear-gradient(to top, rgba(8,7,6,0.98) 0%, rgba(8,7,6,0.2) 55%, transparent 100%)" }}
+                      />
+                      <div className="absolute inset-x-0 bottom-0 p-6">
+                        <div className="act-number mb-2">{ep.actLabel || ep.series}</div>
+                        <h2
+                          className="font-display text-2xl mb-3"
+                          style={{ color: "rgb(var(--foreground))", fontWeight: 300, lineHeight: 1.2 }}
+                        >
+                          {ep.title}
+                        </h2>
+                        <p className="tension-line text-sm line-clamp-3">{ep.summary}</p>
+                        {ep.externalUrl && (
+                          <a
+                            href={ep.externalUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn-primary mt-4 inline-flex"
+                            style={{ padding: "0.5rem 1.25rem", fontSize: "0.65rem" }}
+                          >
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                              <polygon points="5 3 19 12 5 21 5 3" />
+                            </svg>
+                            Assistir
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ── TODOS OS ATOS ─────────────────────────────────────── */}
+      {rest.length > 0 && (
+        <section className="section-space border-t" style={{ borderColor: "rgb(var(--border))" }}>
+          <div className="container-shell">
+            <Reveal>
+              <div className="kicker mb-8">Biblioteca completa</div>
+            </Reveal>
+            <div className="grid gap-px" style={{ background: "rgb(var(--border))" }}>
+              {rest.map((ep: any, i: number) => (
+                <Reveal key={ep.id} className={`delay-${(i % 3) * 100}`}>
+                  <div
+                    className="group flex gap-5 p-5 transition-colors"
+                    style={{ background: "rgb(var(--panel))" }}
+                  >
+                    {/* Thumb pequena */}
+                    <div
+                      className="flex-shrink-0 overflow-hidden"
+                      style={{ width: "80px", aspectRatio: "9/16" }}
+                    >
+                      {ep.thumbnailUrl ? (
+                        <img
+                          src={ep.thumbnailUrl}
+                          alt={ep.title}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <div
+                          className="h-full w-full flex items-center justify-center"
+                          style={{ background: "rgb(var(--surface))" }}
+                        >
+                          <span className="media-slot-label" style={{ fontSize: "0.45rem" }}>
+                            [{(ep.actLabel || "ATO").replace(" ", "_").toUpperCase()}]
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="act-number mb-2">{ep.actLabel || ep.series}</div>
+                      <h3
+                        className="font-display text-xl mb-2"
+                        style={{ color: "rgb(var(--foreground))", fontWeight: 300 }}
+                      >
+                        {ep.title}
+                      </h3>
+                      <p className="tension-line text-sm line-clamp-2">{ep.summary}</p>
+                    </div>
+                    {ep.externalUrl && (
+                      <div className="flex-shrink-0 flex items-center">
+                        <a
+                          href={ep.externalUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-ghost"
+                        >
+                          Assistir
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                          </svg>
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }

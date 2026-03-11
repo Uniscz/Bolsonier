@@ -40,7 +40,7 @@ export default async function BastilhaMuralPage() {
         title="Salão dos Rumores"
         body="O espaço de leitura pública da Bastilha. Aqui entram teorias, reações, comentários e a enquete que ajuda a mover o clima entre os atos."
       >
-        <div className="space-y-4 text-sm text-zinc-300">
+        <div className="space-y-4 text-sm text-foreground/80">
           <div>
             {session
               ? `Você está no salão como ${session.name}.`
@@ -65,7 +65,7 @@ export default async function BastilhaMuralPage() {
                 <h2 className="mt-3 font-display text-2xl font-semibold">
                   Leu, observou e quer reagir?
                 </h2>
-                <p className="mt-4 text-sm leading-6 text-zinc-400">
+                <p className="mt-4 text-sm leading-6 text-muted">
                   Crie um passe rápido para publicar teorias, comentar e votar na enquete semanal.
                 </p>
                 <div className="mt-6">
@@ -102,14 +102,14 @@ export default async function BastilhaMuralPage() {
 
               return (
                 <article key={post.id} className="panel p-6">
-                  <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.18em] text-zinc-500">
+                  <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.18em] text-subtle">
                     <span>{post.kind}</span>
                     {post.pinned ? <span>Destaque</span> : null}
                     <span>{formatDate(post.createdAt)}</span>
                   </div>
                   {post.title ? <h2 className="mt-4 text-2xl font-semibold">{post.title}</h2> : null}
-                  <p className="mt-4 text-sm leading-7 text-zinc-300">{post.body}</p>
-                  <div className="mt-5 text-sm text-zinc-500">Por {post.authorName}</div>
+                  <p className="mt-4 text-sm leading-7 text-foreground/80">{post.body}</p>
+                  <div className="mt-5 text-sm text-subtle">Por {post.authorName}</div>
                   <MuralReactionBar
                     postId={post.id}
                     counts={counts}

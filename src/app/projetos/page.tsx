@@ -27,8 +27,8 @@ export default async function ProjetosPage() {
             <article key={project.id} className="panel p-6">
               <div className="kicker">{project.launchLabel || project.status}</div>
               <h2 className="mt-4 font-display text-3xl font-semibold">{project.title}</h2>
-              <p className="mt-4 text-sm leading-6 text-zinc-300">{project.summary}</p>
-              <div className="mt-6 flex items-center gap-3 text-sm text-zinc-500">
+              <p className="mt-4 text-sm leading-6 text-foreground/80">{project.summary}</p>
+              <div className="mt-6 flex items-center gap-3 text-sm text-subtle">
                 <span>{project.category}</span>
               </div>
               <div className="mt-6">

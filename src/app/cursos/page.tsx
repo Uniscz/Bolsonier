@@ -27,18 +27,18 @@ export default async function CoursesPage() {
       <section className="section-space">
         <div className="container-shell">
           {courses.length === 0 ? (
-            <p className="text-zinc-400">Nenhum curso encontrado no momento.</p>
+            <p className="text-muted">Nenhum curso encontrado no momento.</p>
           ) : (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {courses.map((course) => (
                 <div key={course.id} className="panel p-6 flex flex-col">
                   <h3 className="text-lg font-bold text-white mb-2">{course.title}</h3>
-                  <p className="text-sm text-zinc-400 mb-4 flex-grow">
+                  <p className="text-sm text-muted mb-4 flex-grow">
                     {course.excerpt || course.description}
                   </p>
                   
-                  <div className="mt-auto pt-4 border-t border-white/10 flex justify-between items-center">
-                    <span className="text-sm text-zinc-300 font-medium">
+                  <div className="mt-auto pt-4 border-t border-border flex justify-between items-center">
+                    <span className="text-sm text-foreground/80 font-medium">
                       {course.priceLabel || course.status}
                     </span>
                     {/* Aqui é onde ele clica e vai para a página dinâmica [slug] */}

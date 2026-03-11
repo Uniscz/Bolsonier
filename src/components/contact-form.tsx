@@ -32,7 +32,7 @@ export function ContactForm() {
   return (
     <form
       action={handleSubmit}
-      className="grid gap-4 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 md:p-8"
+      className="grid gap-4 rounded-[2rem] border border-border bg-white/[0.03] p-6 md:p-8"
     >
       <div className="grid gap-4 md:grid-cols-2">
         <label className="grid gap-2 text-sm">

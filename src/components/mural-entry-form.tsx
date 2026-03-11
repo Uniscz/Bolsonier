@@ -33,7 +33,7 @@ export function MuralEntryForm() {
     <div className="panel max-w-xl p-6 md:p-8">
       <div className="kicker">Passe da corte</div>
       <h2 className="mt-4 font-display text-3xl font-semibold">Escolha seu nome de entrada</h2>
-      <p className="mt-4 text-sm leading-6 text-zinc-400">
+      <p className="mt-4 text-sm leading-6 text-muted">
         Leitura pública é livre. Para publicar rumores, teorias e votar, você entra com um nome de exibição.
       </p>
 

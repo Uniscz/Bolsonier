@@ -25,13 +25,13 @@ export default async function FeedbacksPage() {
         <div className="container-shell grid gap-5 lg:grid-cols-3">
           {testimonials.map((testimonial) => (
             <article key={testimonial.id} className="panel p-6">
-              <MessageSquareQuote className="h-5 w-5 text-zinc-500" />
+              <MessageSquareQuote className="h-5 w-5 text-subtle" />
               <p className="mt-5 text-base leading-7 text-zinc-200">“{testimonial.quote}”</p>
-              <div className="mt-6 text-sm text-zinc-400">
+              <div className="mt-6 text-sm text-muted">
                 {testimonial.name}
                 {testimonial.role ? ` · ${testimonial.role}` : ""}
               </div>
-              <div className="mt-2 text-xs uppercase tracking-[0.18em] text-zinc-500">
+              <div className="mt-2 text-xs uppercase tracking-[0.18em] text-subtle">
                 {testimonial.sourceLabel || testimonial.category}
               </div>
             </article>

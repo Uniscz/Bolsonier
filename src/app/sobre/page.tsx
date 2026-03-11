@@ -20,7 +20,7 @@ export default async function SobrePage() {
         title={intro?.title || ""}
         body={intro?.body || ""}
       >
-        <p className="text-sm leading-6 text-zinc-400">
+        <p className="text-sm leading-6 text-muted">
           A marca principal é Bolsonier Studios. O criador por trás é Deh. O objetivo
           não é parecer portfólio. É operar como casa de projetos autorais com
           presença institucional real.
@@ -47,13 +47,13 @@ export default async function SobrePage() {
         </div>
       </section>
 
-      <section className="section-space border-t border-white/5">
+      <section className="section-space border-t border-border">
         <div className="container-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <div className="kicker">Manifesto da produtora</div>
             <h2 className="headline-md mt-4">A marca existe para organizar potência.</h2>
           </div>
-          <div className="space-y-5 text-base leading-7 text-zinc-300">
+          <div className="space-y-5 text-base leading-7 text-foreground/80">
             <p>
               Bolsonier Studios organiza projetos que poderiam facilmente se perder entre
               boa estética e nenhuma estrutura. O foco aqui é o contrário: dar eixo,

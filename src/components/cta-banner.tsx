@@ -20,7 +20,7 @@ export function CtaBanner({
   return (
     <section className="section-space">
       <div className="container-shell">
-        <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-white/[0.04] via-white/[0.03] to-white/[0.01] p-8 shadow-glow md:p-12">
+        <div className="overflow-hidden rounded-[2rem] border border-border bg-gradient-to-br from-white/[0.04] via-white/[0.03] to-white/[0.01] p-8 shadow-glow md:p-12">
           <div className="kicker">{eyebrow}</div>
           <h2 className="headline-md mt-4 max-w-3xl">{title}</h2>
           <p className="body-lg mt-5 max-w-2xl">{body}</p>

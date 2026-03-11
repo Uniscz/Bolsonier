@@ -15,7 +15,7 @@ export default function ContatoPage() {
         title="Conversa profissional com contexto, clareza e objetivo."
         body="Projetos, mentoria, imprensa, parcerias e novos movimentos da produtora entram por aqui."
       >
-        <div className="grid gap-3 text-sm text-zinc-400">
+        <div className="grid gap-3 text-sm text-muted">
           <p>Cliente</p>
           <p>Parceria</p>
           <p>Imprensa</p>
@@ -28,14 +28,14 @@ export default function ContatoPage() {
           <div className="space-y-6">
             <div className="panel p-6">
               <div className="kicker">Orientação</div>
-              <p className="mt-4 text-sm leading-6 text-zinc-300">
+              <p className="mt-4 text-sm leading-6 text-foreground/80">
                 Quanto mais claro for o contexto, mais útil será a resposta. Diga
                 objetivo, estágio do projeto e o tipo de apoio desejado.
               </p>
             </div>
             <div className="panel p-6">
               <div className="kicker">Canais</div>
-              <div className="mt-4 grid gap-3 text-sm text-zinc-300">
+              <div className="mt-4 grid gap-3 text-sm text-foreground/80">
                 <a href={process.env.NEXT_PUBLIC_INSTAGRAM_URL} target="_blank">
                   Instagram
                 </a>

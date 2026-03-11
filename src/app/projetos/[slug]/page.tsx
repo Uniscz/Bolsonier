@@ -51,7 +51,7 @@ export default async function ProjectDetailPage({ params }: Props) {
   return (
     <>
       <PageHero eyebrow={project.category} title={project.title} body={project.summary}>
-        <div className="space-y-3 text-sm text-zinc-300">
+        <div className="space-y-3 text-sm text-foreground/80">
           <div>Status: {project.status}</div>
           {project.launchLabel ? <div>{project.launchLabel}</div> : null}
         </div>
@@ -61,7 +61,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         <div className="container-shell max-w-4xl">
           <div className="panel p-6 md:p-8">
             <div className="kicker">Descrição</div>
-            <p className="mt-5 text-base leading-8 text-zinc-300">{project.body}</p>
+            <p className="mt-5 text-base leading-8 text-foreground/80">{project.body}</p>
           </div>
         </div>
       </section>

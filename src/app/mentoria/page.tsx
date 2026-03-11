@@ -29,9 +29,9 @@ export default async function MentoriaPage() {
   return (
     <>
       <PageHero eyebrow="Mentoria" title={mentorship.title} body={mentorship.summary}>
-        <div className="space-y-4 text-sm text-zinc-300">
+        <div className="space-y-4 text-sm text-foreground/80">
           <div>
-            <div className="text-xs uppercase tracking-[0.2em] text-zinc-500">Formato</div>
+            <div className="text-xs uppercase tracking-[0.2em] text-subtle">Formato</div>
             <p className="mt-2">{mentorship.format}</p>
           </div>
           <Link href={mentorship.ctaHref} className="btn-primary">
@@ -50,11 +50,11 @@ export default async function MentoriaPage() {
         </div>
       </section>
 
-      <section className="section-space border-t border-white/5">
+      <section className="section-space border-t border-border">
         <div className="container-shell grid gap-5 lg:grid-cols-2">
           <div className="panel p-6">
             <div className="kicker">O que você recebe</div>
-            <ul className="mt-5 grid gap-4 text-sm text-zinc-300">
+            <ul className="mt-5 grid gap-4 text-sm text-foreground/80">
               {deliverables.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -62,7 +62,7 @@ export default async function MentoriaPage() {
           </div>
           <div className="panel p-6">
             <div className="kicker">Diferenciais</div>
-            <ul className="mt-5 grid gap-4 text-sm text-zinc-300">
+            <ul className="mt-5 grid gap-4 text-sm text-foreground/80">
               {differentiators.map((item) => (
                 <li key={item}>{item}</li>
               ))}
@@ -76,21 +76,21 @@ export default async function MentoriaPage() {
           <div className="panel p-6">
             <div className="kicker">Diagnóstico</div>
             <h3 className="mt-4 font-display text-2xl font-semibold">Ler o problema certo</h3>
-            <p className="mt-4 text-sm leading-6 text-zinc-400">
+            <p className="mt-4 text-sm leading-6 text-muted">
               Antes de falar em conteúdo, o trabalho é identificar o desalinhamento entre presença, oferta e identidade.
             </p>
           </div>
           <div className="panel p-6">
             <div className="kicker">Direção</div>
             <h3 className="mt-4 font-display text-2xl font-semibold">Definir o eixo</h3>
-            <p className="mt-4 text-sm leading-6 text-zinc-400">
+            <p className="mt-4 text-sm leading-6 text-muted">
               O resultado precisa ser claro o suficiente para orientar visual, narrativa, produto e comunicação.
             </p>
           </div>
           <div className="panel p-6">
             <div className="kicker">Execução</div>
             <h3 className="mt-4 font-display text-2xl font-semibold">Agir com prioridade</h3>
-            <p className="mt-4 text-sm leading-6 text-zinc-400">
+            <p className="mt-4 text-sm leading-6 text-muted">
               Nada de documento bonito sem consequência. O plano sai ordenado para entrar em prática.
             </p>
           </div>

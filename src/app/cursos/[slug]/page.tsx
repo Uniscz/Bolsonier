@@ -49,7 +49,7 @@ export default async function CourseDetailPage({ params }: Props) {
   return (
     <>
       <PageHero eyebrow="Curso" title={course.title} body={course.description}>
-        <div className="space-y-4 text-sm text-zinc-300">
+        <div className="space-y-4 text-sm text-foreground/80">
           <div>Status: {course.status}</div>
           {course.priceLabel ? <div>{course.priceLabel}</div> : null}
           <Link href={ctaHref} className="btn-primary">
@@ -62,7 +62,7 @@ export default async function CourseDetailPage({ params }: Props) {
         <div className="container-shell grid gap-5 lg:grid-cols-2">
           <div className="panel p-6">
             <div className="kicker">Módulos</div>
-            <ul className="mt-5 grid gap-4 text-sm text-zinc-300">
+            <ul className="mt-5 grid gap-4 text-sm text-foreground/80">
               {modules.map((module) => (
                 <li key={module}>{module}</li>
               ))}
@@ -71,7 +71,7 @@ export default async function CourseDetailPage({ params }: Props) {
 
           <div className="panel p-6">
             <div className="kicker">Bônus</div>
-            <ul className="mt-5 grid gap-4 text-sm text-zinc-300">
+            <ul className="mt-5 grid gap-4 text-sm text-foreground/80">
               {bonuses.map((bonus) => (
                 <li key={bonus}>{bonus}</li>
               ))}
@@ -80,7 +80,7 @@ export default async function CourseDetailPage({ params }: Props) {
         </div>
       </section>
 
-      <section className="section-space border-t border-white/5">
+      <section className="section-space border-t border-border">
         <div className="container-shell">
           <div className="max-w-3xl">
             <div className="kicker">Perguntas frequentes</div>
@@ -91,7 +91,7 @@ export default async function CourseDetailPage({ params }: Props) {
             {faq.map((item) => (
               <div key={item.q} className="panel p-6">
                 <h3 className="text-lg font-semibold">{item.q}</h3>
-                <p className="mt-3 text-sm leading-6 text-zinc-400">{item.a}</p>
+                <p className="mt-3 text-sm leading-6 text-muted">{item.a}</p>
               </div>
             ))}
           </div>
