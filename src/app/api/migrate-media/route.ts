@@ -3,13 +3,26 @@ import { prisma } from "@/lib/prisma";
 
 const SECRET = "bolsonier-migrate-2026";
 
+// URLs das thumbnails dos atos (fundo preto, numeração romana)
+const THUMB = {
+  I:    "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/PsAhlRywCwXsKlBK.png",
+  II:   "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/oDEuFpJTinRiLOkr.png",
+  III:  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/lfgIqsGVbQFDZPdC.png",
+  IV:   "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/aDaPmIkZspPJAptE.png",
+  V:    "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/ZKKpFuWStjSCCIBO.png",
+  VI:   "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/XHoeBKydyVwyKiix.png",
+  VII:  "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/LLaCEBglvuCpyigX.png",
+  VIII: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/VASbyGMcaqGRxMVX.png",
+  IX:   "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/ZMbeZWOZVzJcCNqq.png",
+};
+
 const ALL_CHARACTERS = [
   {
     slug: "jairene-de-bolsonier",
     name: "Jairene de Bolsonier",
-    title: "A soberana que nunca abdicou",
+    title: "Soberana da Bastilha",
     allegiance: "Casa Bolsonier",
-    summary: "Jairene governa pela memória e pelo silêncio. Sua autoridade não precisa de proclamação — ela se impõe pela ausência de qualquer alternativa.",
+    summary: "Governa por presença, cálculo e autoridade de linhagem.",
     imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/oKsiGbfeIsfblgFJ.png",
     featured: true,
     sortOrder: 1,
@@ -17,9 +30,9 @@ const ALL_CHARACTERS = [
   {
     slug: "luisa-ignacia-de-silvene",
     name: "Luísa Ignácia de Silvene",
-    title: "A herdeira que aprendeu a esperar",
+    title: "Inteligência contida da corte",
     allegiance: "Casa Silvene",
-    summary: "Luísa cresceu na sombra de Jairene e aprendeu que a paciência é a forma mais sofisticada de ambição.",
+    summary: "Figura de inteligência contida e observação rigorosa, habituada a ler o desvio antes que ele se converta em escândalo.",
     imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/sstqXeCMinpanOJo.png",
     featured: true,
     sortOrder: 2,
@@ -27,9 +40,9 @@ const ALL_CHARACTERS = [
   {
     slug: "alexandra-de-moraes-y-valenca",
     name: "Alexandra de Moraes y Valença",
-    title: "A jurisdição que se move por conta própria",
+    title: "Presença jurídica e glacial",
     allegiance: "Tribunal da Corte",
-    summary: "Alexandra não pede permissão. Ela interpreta as regras como instrumento de poder pessoal e ninguém ousa contradizê-la diretamente.",
+    summary: "Cercada de conveniência, disciplina e ambiguidade estratégica.",
     imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/KZqoXkLqJDzYXPSK.png",
     featured: true,
     sortOrder: 3,
@@ -37,42 +50,52 @@ const ALL_CHARACTERS = [
   {
     slug: "don-trumpetti-vittorio",
     name: "Don Trumpetti Vittorio",
-    title: "O convidado que nunca foi embora",
+    title: "Nome de peso e vaidade",
     allegiance: "Aliança Externa",
-    summary: "Trumpetti chegou como visita de prestígio e ficou como presença incômoda. A corte sorri. Os bastidores fervem.",
+    summary: "Oscilando entre prestígio remanescente, decadência íntima e vulnerabilidade pública.",
     imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/VUIarVGLRNFNpXzl.png",
     featured: true,
     sortOrder: 4,
   },
   {
-    slug: "nicolau-de-bolsonier",
-    name: "Nicolau de Bolsonier",
-    title: "O herdeiro relutante",
-    allegiance: "Casa Bolsonier",
-    summary: "Filho mais novo da casa, Nicolau carrega o peso de um nome que não escolheu e uma lealdade que ainda não decidiu honrar.",
+    slug: "nicolau-de-hylteon",
+    name: "Nicolau de Hylteon",
+    title: "O desterrado",
+    allegiance: "Casa Hylteon",
+    summary: "Aquele cuja simples reentrada na casa restitui à corte aquilo que ela mais teme: memória.",
     imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/INnaTpbCIOcevNKp.png",
     featured: true,
     sortOrder: 5,
   },
   {
-    slug: "erienne-du-palais",
-    name: "Érienne du Palais",
-    title: "A presença que move sem ser vista",
-    allegiance: "Corte Neutra",
-    summary: "Érienne transita entre facções com uma leveza que desorienta. Ninguém sabe ao certo a quem serve — talvez só a si mesma.",
-    imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/HvsOCMiJuSGSiGvc.png",
+    slug: "nicoletty-vittoria-trumpetti-di-bolsonier",
+    name: "Nicoletty Vittoria Trumpetti di Bolsonier",
+    title: "Figura de identidade delicadamente incendiária",
+    allegiance: "Casa Bolsonier / Aliança Trumpetti",
+    summary: "Associada à linhagem, ao escândalo e à instabilidade dos vínculos.",
+    imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/hfzyFLyClmIZEvmB.png",
     featured: true,
     sortOrder: 6,
   },
   {
-    slug: "domitila-de-calheiros",
-    name: "Domitila de Calheiros",
-    title: "A soberana que não precisa de trono",
-    allegiance: "Casa Calheiros",
-    summary: "Domitila governa pela memória e pelo protocolo. Sua presença é uma afirmação de poder que dispensa discurso.",
-    imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/VGcSOoDuDmZpctXs.png",
+    slug: "erienne-de-hylteon",
+    name: "Érienne de Hylteon",
+    title: "Presença de delicadeza tensa",
+    allegiance: "Casa Hylteon",
+    summary: "Ligada às correntes invisíveis que movem o destino da casa sem jamais se anunciar por inteiro.",
+    imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/HvsOCMiJuSGSiGvc.png",
     featured: true,
     sortOrder: 7,
+  },
+  {
+    slug: "domitila-rousselle-alcantara-de-hylteon",
+    name: "Domitila Rousselle Alcântara de Hylteon",
+    title: "Nome de gravidade ancestral",
+    allegiance: "Casa Hylteon",
+    summary: "Em cuja compostura sobrevivem tradição, vigilância e memória de sangue.",
+    imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/VGcSOoDuDmZpctXs.png",
+    featured: true,
+    sortOrder: 8,
   },
 ];
 
@@ -85,7 +108,7 @@ const ALL_EPISODES = [
     actLabel: "Ato I",
     category: "Drama político surreal",
     summary: "A Bastilha se apresenta. A soberana recebe. A corte observa. Ninguém é inocente.",
-    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/VdLIQOMMVuowPdDC.png",
+    thumbnailUrl: THUMB.I,
     externalUrl: "https://www.instagram.com/p/DUYYI-ykfKH/",
     featured: true,
     publishedAt: new Date("2025-01-01T00:00:00Z"),
@@ -98,7 +121,7 @@ const ALL_EPISODES = [
     actLabel: "Ato II",
     category: "Drama político surreal",
     summary: "O silêncio começa a custar mais do que a palavra. Alianças se formam sem declaração.",
-    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/BYnRcPbvdwKDfaSw.png",
+    thumbnailUrl: THUMB.II,
     externalUrl: "https://www.instagram.com/p/DUgtOK6kX2u/",
     featured: true,
     publishedAt: new Date("2025-01-08T00:00:00Z"),
@@ -111,7 +134,7 @@ const ALL_EPISODES = [
     actLabel: "Ato III",
     category: "Drama político surreal",
     summary: "Nicolau retorna. A corte finge indiferença. A soberana não consegue.",
-    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/qswrdETXeeLwwYJS.png",
+    thumbnailUrl: THUMB.III,
     externalUrl: "https://www.instagram.com/p/DUlzDx0EUcg/",
     featured: true,
     publishedAt: new Date("2025-01-15T00:00:00Z"),
@@ -124,7 +147,7 @@ const ALL_EPISODES = [
     actLabel: "Ato IV",
     category: "Drama político surreal",
     summary: "Alexandra impõe sua leitura dos fatos. Ninguém ousa contradizê-la diretamente.",
-    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/cscAptAyKXfAszuh.png",
+    thumbnailUrl: THUMB.IV,
     externalUrl: "https://www.instagram.com/p/DUrBUm6kYb2/",
     featured: false,
     publishedAt: new Date("2025-01-22T00:00:00Z"),
@@ -137,7 +160,7 @@ const ALL_EPISODES = [
     actLabel: "Ato V",
     category: "Drama político surreal",
     summary: "Trumpetti chega. A corte sorri. Bastidores fervem.",
-    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/JhQyYLTtkYuHGKpu.png",
+    thumbnailUrl: THUMB.V,
     externalUrl: "https://www.instagram.com/p/DUxq5a2DrJ0/",
     featured: false,
     publishedAt: new Date("2025-01-29T00:00:00Z"),
@@ -150,7 +173,7 @@ const ALL_EPISODES = [
     actLabel: "Ato VI",
     category: "Drama político surreal",
     summary: "Érienne move peças que ninguém vê. O equilíbrio começa a ceder.",
-    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/diNWEAOVrHxUVzyf.png",
+    thumbnailUrl: THUMB.VI,
     externalUrl: "https://www.instagram.com/p/DU5zByNEYlb/",
     featured: false,
     publishedAt: new Date("2025-02-05T00:00:00Z"),
@@ -163,7 +186,7 @@ const ALL_EPISODES = [
     actLabel: "Ato VII",
     category: "Drama político surreal",
     summary: "O silêncio de Jairene pesa mais que qualquer decreto. A corte interpreta. Ninguém ousa perguntar.",
-    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/scCTORVdquAOTYgU.png",
+    thumbnailUrl: THUMB.VII,
     externalUrl: "https://www.instagram.com/p/DVDsI86AJFM/",
     featured: false,
     publishedAt: new Date("2025-02-12T00:00:00Z"),
@@ -176,9 +199,9 @@ const ALL_EPISODES = [
     actLabel: "Ato VIII",
     category: "Drama político surreal",
     summary: "Há uma lei não escrita na Bastilha: quem precisa afirmar sua posição, já a perdeu.",
-    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/jHDAVgctkSKLNDpl.png",
+    thumbnailUrl: THUMB.VIII,
     externalUrl: "https://www.instagram.com/p/DVVnMl8AIRq/",
-    featured: true,
+    featured: false,
     publishedAt: new Date("2025-02-19T00:00:00Z"),
   },
   {
@@ -189,9 +212,9 @@ const ALL_EPISODES = [
     actLabel: "Ato IX",
     category: "Drama político surreal",
     summary: "Uma entrada muda o ar da sala. O que parecia protocolo passa a soar como ameaça velada.",
-    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/IPaKiByUOStXEDQt.png",
+    thumbnailUrl: THUMB.IX,
     externalUrl: "https://www.instagram.com/p/DVnrrjwALK2/",
-    featured: true,
+    featured: false,
     publishedAt: new Date("2025-02-26T00:00:00Z"),
   },
 ];
@@ -222,7 +245,18 @@ export async function GET(request: Request) {
 
   const results: Record<string, unknown> = {};
 
-  // Upsert de todos os personagens
+  // Primeiro: remover personagens com slugs antigos/errados
+  const oldSlugs = [
+    "nicolau-de-bolsonier",
+    "erienne-du-palais",
+    "domitila-de-calheiros",
+  ];
+  const deleteOld = await prisma.bastilhaCharacter.deleteMany({
+    where: { slug: { in: oldSlugs } },
+  });
+  results.deletedOldCharacters = deleteOld.count;
+
+  // Upsert de todos os personagens com nomes corretos
   const charResults = await Promise.all(
     ALL_CHARACTERS.map(async (c) => {
       try {
@@ -239,7 +273,7 @@ export async function GET(request: Request) {
           },
           create: c,
         });
-        return { slug: c.slug, status: "ok", id: r.id };
+        return { slug: c.slug, name: c.name, status: "ok", id: r.id };
       } catch (e) {
         return { slug: c.slug, status: "error", error: String(e) };
       }
@@ -247,7 +281,7 @@ export async function GET(request: Request) {
   );
   results.characters = charResults;
 
-  // Upsert de todos os episódios
+  // Upsert de todos os episódios com thumbnails corretas
   const epResults = await Promise.all(
     ALL_EPISODES.map(async (e) => {
       try {
