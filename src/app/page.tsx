@@ -23,7 +23,10 @@ export default async function HomePage() {
   return (
     <>
       {/* ── HERO ─────────────────────────────────────────────── */}
-      <HeroVideo />
+      <HeroVideo
+        videoSrc="https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/YHSdAwMaGoGhkPOV.mp4"
+        posterSrc="https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/YVKlrWYXrTsKodOt.png"
+      />
 
       {/* ── SINOPSE ──────────────────────────────────────────── */}
       <section className="section-space border-t" style={{ borderColor: "rgb(var(--border))" }}>

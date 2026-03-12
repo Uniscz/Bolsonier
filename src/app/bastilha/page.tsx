@@ -19,14 +19,17 @@ export default async function BastilhaPage() {
         className="relative overflow-hidden"
         style={{ minHeight: "80vh", background: "rgb(var(--background))" }}
       >
-        {/* Slot de keyart */}
+        {/* Keyart */}
         <div className="absolute inset-0 z-0">
           <div
-            className="h-full w-full media-slot"
+            className="h-full w-full"
             style={{ opacity: 0.4 }}
           >
-            {/* [KEYART_BASTILHA_01] — imagem horizontal premium */}
-            {/* Quando tiver: <img src="..." className="h-full w-full object-cover" /> */}
+            <img
+              src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/fayYxcXQLgALYhXH.jpeg"
+              alt="Bastilha de Bolsonière"
+              className="h-full w-full object-cover"
+            />
           </div>
           <div
             className="absolute inset-0"
@@ -71,15 +74,19 @@ export default async function BastilhaPage() {
               <div className="kicker mb-6">Sinopse</div>
               <h2 className="headline-md mb-6">A ordem que se sustenta pelo temor</h2>
 
-              {/* Slot de trailer */}
+              {/* Trailer */}
               <div
-                className="media-slot mt-8"
-                style={{ aspectRatio: "9/16", maxWidth: "240px" }}
+                className="mt-8 overflow-hidden"
+                style={{ aspectRatio: "9/16", maxWidth: "240px", border: "1px solid rgba(168,138,80,0.2)" }}
               >
-                <div className="media-slot-label">
-                  [TRAILER_BASTILHA_30S_01]<br />
-                  <span style={{ fontSize: "0.5rem" }}>vídeo 9:16 · 30 segundos</span>
-                </div>
+                <video
+                  src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/JlkDjASBHeYILUWq.mp4"
+                  muted
+                  loop
+                  playsInline
+                  autoPlay
+                  className="h-full w-full object-cover"
+                />
               </div>
             </Reveal>
             <Reveal className="delay-200">

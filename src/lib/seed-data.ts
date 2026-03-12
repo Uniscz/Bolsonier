@@ -199,40 +199,112 @@ export const projectSeed = [
 
 export const episodeSeed = [
   {
+    title: "Ato I — A chegada da corte",
+    slug: "ato-i-a-chegada-da-corte",
+    series: "Bastilha de Bolsonière",
+    season: 1,
+    actLabel: "Ato I",
+    category: "Drama político surreal",
+    summary: "A corte se apresenta. O protocolo é estabelecido. O jogo começa.",
+    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/VdLIQOMMVuowPdDC.png",
+    externalUrl: "https://www.instagram.com/p/DUYYI-ykfKH/",
+    featured: true
+  },
+  {
+    title: "Ato II — O protocolo da ausência",
+    slug: "ato-ii-o-protocolo-da-ausencia",
+    series: "Bastilha de Bolsonière",
+    season: 1,
+    actLabel: "Ato II",
+    category: "Drama político surreal",
+    summary: "Quem não aparece também governa. A ausência como estratégia de poder.",
+    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/BYnRcPbvdwKDfaSw.png",
+    externalUrl: "https://www.instagram.com/p/DUgtOK6kX2u/",
+    featured: true
+  },
+  {
+    title: "Ato III — A liturgia do salão",
+    slug: "ato-iii-a-liturgia-do-salao",
+    series: "Bastilha de Bolsonière",
+    season: 1,
+    actLabel: "Ato III",
+    category: "Drama político surreal",
+    summary: "O ritual se repete. Mas desta vez, alguém percebeu a falha na coreografia.",
+    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/qswrdETXeeLwwYJS.png",
+    externalUrl: "https://www.instagram.com/p/DUlzDx0EUcg/",
+    featured: true
+  },
+  {
+    title: "Ato IV — A aliança provisória",
+    slug: "ato-iv-a-alianca-provisoria",
+    series: "Bastilha de Bolsonière",
+    season: 1,
+    actLabel: "Ato IV",
+    category: "Drama político surreal",
+    summary: "Alianças se formam não por afinidade, mas por necessidade. E duram exatamente até o próximo ato.",
+    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/cscAptAyKXfAszuh.png",
+    externalUrl: "https://www.instagram.com/p/DUrBUm6kYb2/",
+    featured: false
+  },
+  {
+    title: "Ato V — O rumor como arma",
+    slug: "ato-v-o-rumor-como-arma",
+    series: "Bastilha de Bolsonière",
+    season: 1,
+    actLabel: "Ato V",
+    category: "Drama político surreal",
+    summary: "Na Bastilha, o que se diz nos corredores vale mais do que qualquer decreto.",
+    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/JhQyYLTtkYuHGKpu.png",
+    externalUrl: "https://www.instagram.com/p/DUxq5a2DrJ0/",
+    featured: false
+  },
+  {
+    title: "Ato VI — A cena que não estava no roteiro",
+    slug: "ato-vi-a-cena-que-nao-estava-no-roteiro",
+    series: "Bastilha de Bolsonière",
+    season: 1,
+    actLabel: "Ato VI",
+    category: "Drama político surreal",
+    summary: "Quando o improviso revela mais do que qualquer ensaio poderia esconder.",
+    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/diNWEAOVrHxUVzyf.png",
+    externalUrl: "https://www.instagram.com/p/DU5zByNEYlb/",
+    featured: false
+  },
+  {
+    title: "Ato VII — O peso do silêncio",
+    slug: "ato-vii-o-peso-do-silencio",
+    series: "Bastilha de Bolsonière",
+    season: 1,
+    actLabel: "Ato VII",
+    category: "Drama político surreal",
+    summary: "Há momentos em que o silêncio de uma personagem redefine toda a cena.",
+    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/scCTORVdquAOTYgU.png",
+    externalUrl: "https://www.instagram.com/p/DVDsI86AJFM/",
+    featured: false
+  },
+  {
     title: "Ato VIII — A lei do salão",
     slug: "ato-viii-a-lei-do-salao",
-    series: "Bastilha de Bolsonier",
+    series: "Bastilha de Bolsonière",
     season: 1,
     actLabel: "Ato VIII",
     category: "Drama político surreal",
-    summary:
-      "A corte tenta manter a liturgia enquanto a tensão cresce nos bastidores e a lealdade vira peça de cena.",
-    externalUrl: "https://instagram.com",
+    summary: "A corte tenta manter a liturgia enquanto a tensão cresce nos bastidores e a lealdade vira peça de cena.",
+    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/jHDAVgctkSKLNDpl.png",
+    externalUrl: "https://www.instagram.com/p/DVVnMl8AIRq/",
     featured: true
   },
   {
     title: "Ato IX — O rumor entra pela escada",
     slug: "ato-ix-o-rumor-entra-pela-escada",
-    series: "Bastilha de Bolsonier",
+    series: "Bastilha de Bolsonière",
     season: 1,
     actLabel: "Ato IX",
     category: "Drama político surreal",
-    summary:
-      "Uma entrada muda o ar da sala. O que parecia protocolo passa a soar como ameaça velada.",
-    externalUrl: "https://tiktok.com",
+    summary: "Uma entrada muda o ar da sala. O que parecia protocolo passa a soar como ameaça velada.",
+    thumbnailUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/IPaKiByUOStXEDQt.png",
+    externalUrl: "https://www.instagram.com/p/DVnrrjwALK2/",
     featured: true
-  },
-  {
-    title: "Piloto — O método da presença",
-    slug: "piloto-o-metodo-da-presenca",
-    series: "Bolsonier Studios",
-    season: 1,
-    actLabel: "Piloto",
-    category: "Institucional",
-    summary:
-      "Peça institucional da produtora para apresentar estética, discurso e ritmo do ecossistema.",
-    externalUrl: "https://youtube.com",
-    featured: false
   }
 ] satisfies Prisma.EpisodeCreateInput[];
 
@@ -277,6 +349,7 @@ export const characterSeed = [
     allegiance: "Casa Bolsonier",
     summary:
       "Figura central da Bastilha. Alterna liturgia, teatro político e sobrevivência simbólica.",
+    imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/oKsiGbfeIsfblgFJ.png",
     featured: true,
     sortOrder: 1
   },
@@ -287,6 +360,7 @@ export const characterSeed = [
     allegiance: "Casa Silvene",
     summary:
       "Aparência contida, tensão interna e leitura fina do jogo ao redor. Carrega emoção sem perder postura.",
+    imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/sstqXeCMinpanOJo.png",
     featured: true,
     sortOrder: 2
   },
@@ -297,6 +371,7 @@ export const characterSeed = [
     allegiance: "Valença",
     summary:
       "Uma presença que observa, calcula e move o clima da cena sem precisar elevar a voz.",
+    imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/KZqoXkLqJDzYXPSK.png",
     featured: true,
     sortOrder: 3
   },
@@ -307,8 +382,42 @@ export const characterSeed = [
     allegiance: "Corte externa",
     summary:
       "Personagem que desloca o ambiente pela performance, pelo ruído e pelo ego em estado permanente de desfile.",
+    imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/VUIarVGLRNFNpXzl.png",
     featured: false,
     sortOrder: 4
+  },
+  {
+    name: "Nicolau de Bolsonier",
+    slug: "nicolau-de-bolsonier",
+    title: "O herdeiro observador",
+    allegiance: "Casa Bolsonier",
+    summary:
+      "Jovem da corte que aprende mais ouvindo do que falando. Sua posição ainda não está definida — e todos sabem disso.",
+    imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/INnaTpbCIOcevNKp.png",
+    featured: false,
+    sortOrder: 5
+  },
+  {
+    name: "Erienne du Palais",
+    slug: "erienne-du-palais",
+    title: "Graça como estratégia",
+    allegiance: "Corte",
+    summary:
+      "Presença luminosa que usa a beleza como escudo e a leveza como disfarce de uma inteligência afiada.",
+    imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/HvsOCMiJuSGSiGvc.png",
+    featured: false,
+    sortOrder: 6
+  },
+  {
+    name: "Domitila de Calheiros",
+    slug: "domitila-de-calheiros",
+    title: "A rainha que não precisa de coroa",
+    allegiance: "Casa Calheiros",
+    summary:
+      "Autoridade construída ao longo de décadas. Não precisa elevar a voz — o salão já sabe quando ela entrou.",
+    imageUrl: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663381721525/VGcSOoDuDmZpctXs.png",
+    featured: false,
+    sortOrder: 7
   }
 ] satisfies Prisma.BastilhaCharacterCreateInput[];
 
