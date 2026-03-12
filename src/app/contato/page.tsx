@@ -29,8 +29,10 @@ export default function ContatoPage() {
             <div className="panel p-6">
               <div className="kicker">Orientação</div>
               <p className="mt-4 text-sm leading-6 text-foreground/80">
-                Quanto mais claro for o contexto, mais útil será a resposta. Diga
-                objetivo, estágio do projeto e o tipo de apoio desejado.
+                Quanto mais precisa for a exposição do contexto, mais qualificada será a devolutiva. Indique objetivo, estágio do projeto, necessidade central e a natureza da interlocução pretendida.
+              </p>
+              <p className="mt-4 text-xs leading-6" style={{ color: "rgb(var(--subtle))", fontStyle: "italic" }}>
+                Demandas vagas recebem resposta vaga. A clareza, nesta casa, constitui forma elementar de respeito ao tempo e ao trabalho.
               </p>
             </div>
             <div className="panel p-6">

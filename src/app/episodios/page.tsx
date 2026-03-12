@@ -90,8 +90,11 @@ export default async function EpisodiosPage() {
                               <polygon points="5 3 19 12 5 21 5 3" />
                             </svg>
                           </div>
-                          <span className="media-slot-label">
-                            [THUMB_{(ep.actLabel || "ATO").replace(" ", "_").toUpperCase()}]
+                          <span
+                            className="font-display text-lg"
+                            style={{ color: "rgba(168,138,80,0.25)", fontWeight: 300 }}
+                          >
+                            {ep.actLabel || ep.series}
                           </span>
                         </div>
                       )}
@@ -137,7 +140,10 @@ export default async function EpisodiosPage() {
         <section className="section-space border-t" style={{ borderColor: "rgb(var(--border))" }}>
           <div className="container-shell">
             <Reveal>
-              <div className="kicker mb-8">Biblioteca completa</div>
+              <div className="kicker mb-4">Biblioteca completa</div>
+              <p className="body-lg mb-8" style={{ maxWidth: "48rem", color: "rgb(var(--muted))" }}>
+                Arquivo progressivo dos atos já públicos, organizados segundo a ordem de revelação e agravamento da queda.
+              </p>
             </Reveal>
             <div className="grid gap-px" style={{ background: "rgb(var(--border))" }}>
               {rest.map((ep: any, i: number) => (
@@ -162,8 +168,11 @@ export default async function EpisodiosPage() {
                           className="h-full w-full flex items-center justify-center"
                           style={{ background: "rgb(var(--surface))" }}
                         >
-                          <span className="media-slot-label" style={{ fontSize: "0.45rem" }}>
-                            [{(ep.actLabel || "ATO").replace(" ", "_").toUpperCase()}]
+                          <span
+                            className="font-display text-xs"
+                            style={{ color: "rgba(168,138,80,0.3)", fontWeight: 300 }}
+                          >
+                            {ep.actLabel}
                           </span>
                         </div>
                       )}

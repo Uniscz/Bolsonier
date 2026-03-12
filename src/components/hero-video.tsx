@@ -134,8 +134,7 @@ export function HeroVideo({ videoSrc, posterSrc }: HeroVideoProps) {
                         <polygon points="5 3 19 12 5 21 5 3" />
                       </svg>
                     </div>
-                    <span className="media-slot-label">[VIDEO_HERO_9x16]</span>
-                    <span className="media-slot-label" style={{ fontSize: "0.55rem" }}>poster fallback: [POSTER_HERO]</span>
+                    <span className="font-display text-sm" style={{ color: "rgba(168,138,80,0.3)", letterSpacing: "0.15em", textTransform: "uppercase" }}>Bastilha de Bolsonier</span>
                   </div>
                 )}
 

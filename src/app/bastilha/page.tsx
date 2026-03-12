@@ -149,7 +149,9 @@ export default async function BastilhaPage() {
                             {char.name.charAt(0)}
                           </span>
                         </div>
-                        <span className="media-slot-label">[PORTRAIT_{char.name.toUpperCase().split(" ")[0]}_MASTER]</span>
+                        <span className="font-display text-xs" style={{ color: "rgba(168,138,80,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                            {char.name.split(" ")[0]}
+                          </span>
                       </div>
                     )}
                     <div
@@ -230,14 +232,21 @@ export default async function BastilhaPage() {
                       <div className="flex items-center gap-3 mb-3">
                         <span className="badge-gold">Rumor em destaque</span>
                       </div>
-                      <div className="text-sm font-medium mb-2" style={{ color: "rgb(var(--foreground))" }}>[TÍTULO DO RUMOR]</div>
-                      <p className="body-md text-xs">[Conteúdo do rumor em destaque da semana]</p>
+                      <div className="text-sm font-medium mb-2" style={{ color: "rgb(var(--foreground))" }}>A escadaria já não protege o nome da casa</div>
+                      <p className="body-md text-xs">Corre entre os salões a impressão de que certos gestos, antes tolerados como protocolo, passaram a ser lidos como sinais de fissura interna. Uma entrada, um olhar sustido e uma mudança quase imperceptível de composição bastaram para reabrir perguntas que a Bastilha julgava domesticadas. Quando a etiqueta deixa de conter a leitura pública, o rumor deixa de ser desordem e passa a funcionar como ata paralela da verdade.</p>
                     </div>
                     <div className="rumor-card">
                       <div className="flex items-center gap-3 mb-3">
                         <span className="badge-wine">Suspeita da semana</span>
                       </div>
-                      <p className="body-md text-xs">[Teoria ou suspeita em circulação]</p>
+                      <p className="body-md text-xs">Sustenta-se, entre os observadores mais atentos da corte, que a instabilidade atual já não decorre apenas de rivalidades ordinárias, mas de uma disputa silenciosa pela definição legítima da memória, da filiação e do direito de permanência simbólica. A dúvida já não é se haverá ruptura. A dúvida é quem redigirá sua versão oficial.</p>
+                    </div>
+                    <div className="rumor-card">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="badge-gold">Leitura da corte</span>
+                      </div>
+                      <div className="text-sm font-medium mb-2" style={{ color: "rgb(var(--foreground))" }}>Estado atual da Bastilha</div>
+                      <p className="body-md text-xs">A casa preserva fachada, rito e solenidade. Internamente, porém, já opera sob regime de contenção. O que ainda se apresenta como ordem talvez não passe da última forma elegante do colapso.</p>
                     </div>
                   </>
                 )}
@@ -276,8 +285,10 @@ export default async function BastilhaPage() {
                     {ep.thumbnailUrl ? (
                       <img src={ep.thumbnailUrl} alt={ep.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                     ) : (
-                      <div className="h-full w-full media-slot">
-                        <span className="media-slot-label">[THUMB_{ep.actLabel?.replace(" ", "_").toUpperCase() || "ATO"}]</span>
+                      <div className="h-full w-full flex items-center justify-center" style={{ background: "rgb(var(--surface))" }}>
+                        <span className="font-display text-lg" style={{ color: "rgba(168,138,80,0.25)", fontWeight: 300 }}>
+                          {ep.actLabel || ep.series}
+                        </span>
                       </div>
                     )}
                     <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(8,7,6,0.95) 0%, rgba(8,7,6,0.2) 60%, transparent 100%)" }} />

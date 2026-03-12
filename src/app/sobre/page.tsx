@@ -75,8 +75,8 @@ export default async function SobrePage() {
 
       <CtaBanner
         eyebrow="Contato"
-        title="Se você quer construir um projeto com linguagem, produto e sistema, a conversa começa aqui."
-        body="Parcerias, imprensa, projetos autorais, mentoria e frentes comerciais entram pela mesma porta: uma conversa clara."
+        title="Se o interesse é construir projeto com linguagem, densidade e possibilidade real de expansão, a entrada se faz por interlocução clara."
+        body="Parcerias, imprensa, desenvolvimento autoral, consultoria criativa e frentes comerciais são recebidos sob o mesmo princípio: forma, direção e propósito."
         primaryLabel="Ir para contato"
         primaryHref="/contato"
       />

@@ -10,14 +10,14 @@ export const metadata = buildMetadata({
 });
 
 const timelineFallback = [
-  { id: "1", slug: "i", dateLabel: "I", title: "Consolidação da ordem aparente", body: "A Bastilha se apresenta como casa de prestígio, disciplina e autoridade simbólica.", important: true, sortOrder: 1 },
-  { id: "2", slug: "ii", dateLabel: "II", title: "Formação das tensões internas", body: "Convivência, hierarquia e ressentimento passam a coexistir sob crescente desconforto.", important: false, sortOrder: 2 },
-  { id: "3", slug: "iii", dateLabel: "III", title: "Reingresso de presenças decisivas", body: "Figuras antes afastadas retornam e restituem à casa conflitos jamais extintos.", important: true, sortOrder: 3 },
-  { id: "4", slug: "iv", dateLabel: "IV", title: "Erosão dos vínculos", body: "Lealdades cedem à suspeita, à vaidade e à necessidade de preservação individual.", important: false, sortOrder: 4 },
-  { id: "5", slug: "v", dateLabel: "V", title: "Escalada do constrangimento público", body: "Os salões convertem-se em palco de sinais cada vez menos disfarçáveis de colapso.", important: true, sortOrder: 5 },
-  { id: "6", slug: "vi", dateLabel: "VI", title: "Crise de filiação, prestígio e herança", body: "A legitimidade de certos vínculos passa a ser observada com inquietação jurídica e moral.", important: false, sortOrder: 6 },
-  { id: "7", slug: "vii", dateLabel: "VII", title: "Convergência das hostilidades", body: "Múltiplas forças adversas passam a orbitar o mesmo centro de desgaste.", important: true, sortOrder: 7 },
-  { id: "8", slug: "viii", dateLabel: "VIII", title: "A morte como desfecho cerimonial", body: "A ruína atinge sua forma suprema quando o poder tenta sobreviver à própria decomposição.", important: true, sortOrder: 8 },
+  { id: "1", slug: "i", dateLabel: "I", title: "A fundação da aparência", body: "A Bastilha se apresenta como casa de prestígio, disciplina e autoridade simbólica.", important: true, sortOrder: 1 },
+  { id: "2", slug: "ii", dateLabel: "II", title: "As primeiras tensões de convivência", body: "Convivência, hierarquia e ressentimento passam a coexistir sob crescente desconforto.", important: false, sortOrder: 2 },
+  { id: "3", slug: "iii", dateLabel: "III", title: "O retorno do que não havia sido encerrado", body: "Figuras antes afastadas retornam e restituem à casa conflitos jamais extintos.", important: true, sortOrder: 3 },
+  { id: "4", slug: "iv", dateLabel: "IV", title: "A corrosão dos vínculos", body: "Lealdades cedem à suspeita, à vaidade e à necessidade de preservação individual.", important: false, sortOrder: 4 },
+  { id: "5", slug: "v", dateLabel: "V", title: "O salão como cena de constrangimento", body: "Os salões convertem-se em palco de sinais cada vez menos disfarçáveis de colapso.", important: true, sortOrder: 5 },
+  { id: "6", slug: "vi", dateLabel: "VI", title: "A suspeita sobre filiação e herança", body: "A legitimidade de certos vínculos passa a ser observada com inquietação jurídica e moral.", important: false, sortOrder: 6 },
+  { id: "7", slug: "vii", dateLabel: "VII", title: "A convergência das forças adversas", body: "Múltiplas forças adversas passam a orbitar o mesmo centro de desgaste.", important: true, sortOrder: 7 },
+  { id: "8", slug: "viii", dateLabel: "VIII", title: "A morte como rito final da decomposição", body: "A ruína atinge sua forma suprema quando o poder tenta sobreviver à própria decomposição.", important: true, sortOrder: 8 },
 ];
 
 export default async function CronologiaPage() {
@@ -57,18 +57,16 @@ export default async function CronologiaPage() {
         </div>
       </section>
 
-      {/* ── INFOGRÁFICO SLOT ─────────────────────────────────── */}
+      {/* ── INFOGRÁFICO ──────────────────────────────────────── */}
       <section className="py-12 border-b" style={{ borderColor: "rgb(var(--border))" }}>
         <div className="container-shell">
-          <div
-            className="media-slot"
-            style={{ height: "120px", borderRadius: "0.25rem" }}
-          >
-            <span className="media-slot-label">
-              [INFOGRAFICO_LINHA_DA_QUEDA_01]<br />
-              <span style={{ fontSize: "0.5rem" }}>infográfico horizontal · visão geral do arco</span>
-            </span>
-          </div>
+          <div className="kicker mb-4">Infográfico central</div>
+          <h2 className="headline-sm mb-4" style={{ color: "rgb(var(--foreground))" }}>
+            Linha da queda da Bastilha
+          </h2>
+          <p className="body-lg" style={{ maxWidth: "48rem" }}>
+            Da ordem aparente ao desfecho cerimonial, a Bastilha percorre um trajeto em que etiqueta, filiação, rumor e prestígio deixam de funcionar como garantias de estabilidade e passam a operar como instrumentos da própria ruína.
+          </p>
         </div>
       </section>
 
@@ -131,16 +129,6 @@ export default async function CronologiaPage() {
                           </h2>
                           <p className="body-lg" style={{ fontSize: "0.9rem" }}>{event.body}</p>
                         </div>
-
-                        {/* Slot de still */}
-                        <div
-                          className="media-slot flex-shrink-0"
-                          style={{ width: "120px", height: "160px", borderRadius: "0.25rem" }}
-                        >
-                          <span className="media-slot-label" style={{ fontSize: "0.5rem" }}>
-                            [STILL_CRONOLOGIA_{event.dateLabel}]
-                          </span>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -148,6 +136,28 @@ export default async function CronologiaPage() {
               ))}
             </div>
           </div>
+
+          {/* ── CLÁUSULA DE LEITURA ──────────────────────────── */}
+          <Reveal>
+            <div
+              className="mt-16 border-t pt-12"
+              style={{ borderColor: "rgb(var(--border-gold))" }}
+            >
+              <div className="kicker mb-4">Cláusula de leitura</div>
+              <p
+                className="font-display text-xl"
+                style={{
+                  color: "rgb(var(--muted))",
+                  fontWeight: 300,
+                  fontStyle: "italic",
+                  lineHeight: 1.6,
+                  maxWidth: "40rem"
+                }}
+              >
+                Na Bastilha, os acontecimentos não se sucedem apenas no tempo. Eles se acumulam em dignidade ferida, leitura pública e perda gradual de imunidade simbólica.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
     </>

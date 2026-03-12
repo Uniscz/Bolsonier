@@ -54,6 +54,33 @@ export default async function BastilhaMuralPage() {
         </div>
       </PageHero>
 
+      {/* ── BLOCOS PÚBLICOS ─────────────────────────────────── */}
+      <section className="section-space border-b" style={{ borderColor: "rgb(var(--border))" }}>
+        <div className="container-shell">
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="panel p-6">
+              <div className="kicker mb-4">Rumor aberto</div>
+              <h2 className="font-display text-xl mb-4" style={{ color: "rgb(var(--foreground))", fontWeight: 300 }}>Quem perdeu o controle da leitura pública?</h2>
+              <p className="body-md text-sm" style={{ color: "rgb(var(--muted))" }}>A hipótese dominante entre os frequentadores do salão sustenta que a Bastilha já não administra o próprio clima. O que antes era contido por cerimônia agora vaza por gesto, silêncio e reposicionamento de figuras centrais.</p>
+            </div>
+            <div className="panel p-6">
+              <div className="kicker mb-4">Enquete da semana</div>
+              <h2 className="font-display text-xl mb-4" style={{ color: "rgb(var(--foreground))", fontWeight: 300 }}>A atual crise da Bastilha decorre de quê?</h2>
+              <div className="grid gap-2 text-sm" style={{ color: "rgb(var(--muted))" }}>
+                <div className="flex items-center gap-2"><span style={{ color: "rgb(var(--gold-dim))" }}>—</span>Da erosão interna dos vínculos</div>
+                <div className="flex items-center gap-2"><span style={{ color: "rgb(var(--gold-dim))" }}>—</span>Do retorno de memórias mal encerradas</div>
+                <div className="flex items-center gap-2"><span style={{ color: "rgb(var(--gold-dim))" }}>—</span>Da disputa por filiação e herança</div>
+                <div className="flex items-center gap-2"><span style={{ color: "rgb(var(--gold-dim))" }}>—</span>Da incapacidade da corte de conter o rumor</div>
+              </div>
+            </div>
+            <div className="panel p-6">
+              <div className="kicker mb-4">Despacho do salão</div>
+              <p className="body-md text-sm" style={{ color: "rgb(var(--muted))" }}>Este espaço recolhe impressões, suspeitas e leituras estratégicas do público. Nada aqui produz sentença. Mas quase tudo antecipa o que a corte tentará negar depois.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-space">
         <div className="container-shell grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="space-y-6">

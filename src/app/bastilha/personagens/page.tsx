@@ -97,8 +97,11 @@ export default async function PersonagensPage() {
                           {char.name.charAt(0)}
                         </span>
                       </div>
-                      <span className="media-slot-label text-center px-4">
-                        [PORTRAIT_{char.name.toUpperCase().split(" ")[0]}_MASTER]
+                      <span
+                        className="font-display text-xs text-center px-4"
+                        style={{ color: "rgba(168,138,80,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}
+                      >
+                        {char.name.split(" ")[0]}
                       </span>
                     </div>
                   )}
@@ -159,24 +162,25 @@ export default async function PersonagensPage() {
               className="panel-gold p-10 max-w-3xl mx-auto text-center"
             >
               <div className="kicker mb-4">Relações</div>
-              <h2 className="headline-sm mb-4" style={{ color: "rgb(var(--foreground))" }}>
+              <h2 className="headline-sm mb-8" style={{ color: "rgb(var(--foreground))" }}>
                 Os vínculos que movem a corte
               </h2>
-              <p className="body-lg">
-                As relações entre os personagens — laços de sangue, desejo, lealdade e rivalidade — serão documentadas neste espaço à medida que os atos avançam.
-              </p>
-              <div className="mt-6 grid gap-3 text-sm" style={{ color: "rgb(var(--muted))" }}>
-                <div className="flex items-center justify-center gap-3">
-                  <span style={{ color: "rgb(var(--gold-dim))" }}>—</span>
-                  <span>[RELAÇÃO: Jairene e Alexandra]</span>
+              <div className="mt-2 grid gap-8 text-left">
+                <div>
+                  <div className="text-sm font-medium mb-2" style={{ color: "rgb(var(--gold))" }}>Jairene de Bolsonier e Alexandra de Moraes y Valença</div>
+                  <p className="body-md text-sm" style={{ color: "rgb(var(--muted))" }}>Entre a soberania de linhagem e a autoridade de interpretação, subsiste uma aliança funcional atravessada por cálculo, vigilância e conveniência recíproca. Jairene necessita de ordem. Alexandra necessita de centralidade. Nenhuma das duas ignora que, em circunstâncias adequadas, a outra poderia converter-se de apoio indispensável em ameaça juridicamente elegante.</p>
                 </div>
-                <div className="flex items-center justify-center gap-3">
-                  <span style={{ color: "rgb(var(--gold-dim))" }}>—</span>
-                  <span>[RELAÇÃO: Nicolau e Luísa]</span>
+                <div>
+                  <div className="text-sm font-medium mb-2" style={{ color: "rgb(var(--gold))" }}>Nicolau de Hylteon e Luísa Ignácia de Silvene</div>
+                  <p className="body-md text-sm" style={{ color: "rgb(var(--muted))" }}>Há entre ambos uma forma de reconhecimento que antecede a fala e excede o protocolo. Luísa compreende o que Nicolau representa para a memória da casa. Nicolau, por sua vez, sabe que a inteligência de Luísa opera menos por exibição do que por leitura precisa do desvio. O vínculo não se declara, mas produz efeitos de confiança, cautela e entendimento mútuo.</p>
                 </div>
-                <div className="flex items-center justify-center gap-3">
-                  <span style={{ color: "rgb(var(--gold-dim))" }}>—</span>
-                  <span>[RELAÇÃO: Trumpetti e Jairene]</span>
+                <div>
+                  <div className="text-sm font-medium mb-2" style={{ color: "rgb(var(--gold))" }}>Don Trumpetti Vittorio e Jairene de Bolsonier</div>
+                  <p className="body-md text-sm" style={{ color: "rgb(var(--muted))" }}>A relação se sustenta sobre prestígio, aparência de solidez e utilidade recíproca, mas já apresenta sinais visíveis de erosão simbólica. Onde antes havia composição estratégica, agora se insinua desconforto, diferença de ritmo e perda de autoridade conjunta. Permanecem unidos menos por harmonia do que pelo custo público da dissolução.</p>
+                </div>
+                <div>
+                  <div className="text-sm font-medium mb-2" style={{ color: "rgb(var(--gold))" }}>Nicoletty Vittoria Trumpetti di Bolsonier e a corte</div>
+                  <p className="body-md text-sm" style={{ color: "rgb(var(--muted))" }}>Nicoletty não ocupa apenas um lugar de sangue ou aliança. Sua mera presença desloca leituras, reabre comparações e introduz instabilidade no regime de aparências da Bastilha. Em torno dela, a corte hesita entre acolhimento, cálculo e temor.</p>
                 </div>
               </div>
             </div>

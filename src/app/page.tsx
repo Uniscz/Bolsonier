@@ -105,7 +105,9 @@ export default async function HomePage() {
                             {char.name.charAt(0)}
                           </span>
                         </div>
-                        <span className="media-slot-label">[PORTRAIT_{char.name.toUpperCase().split(" ")[0]}_MASTER]</span>
+                        <span className="font-display text-xs" style={{ color: "rgba(168,138,80,0.3)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                            {char.name.split(" ")[0]}
+                          </span>
                       </div>
                     )}
                     <div
@@ -128,7 +130,7 @@ export default async function HomePage() {
                   className="media-slot"
                   style={{ aspectRatio: "3/4", background: "rgb(var(--panel))" }}
                 >
-                  <span className="media-slot-label">[PORTRAIT_PERSONAGEM_{romanNumerals[i]}]</span>
+                  <span className="font-display text-2xl" style={{ color: "rgba(168,138,80,0.2)", fontWeight: 300 }}>{romanNumerals[i]}</span>
                 </div>
               ))
             )}
@@ -174,7 +176,9 @@ export default async function HomePage() {
                         className="h-full w-full flex items-center justify-center"
                         style={{ background: "rgb(var(--surface))" }}
                       >
-                        <span className="media-slot-label">[THUMB_{ep.actLabel?.replace(" ", "_").toUpperCase() || "ATO"}]</span>
+                        <span className="font-display text-lg" style={{ color: "rgba(168,138,80,0.25)", fontWeight: 300 }}>
+                            {ep.actLabel || ep.series}
+                          </span>
                       </div>
                     )}
                     <div
@@ -197,12 +201,12 @@ export default async function HomePage() {
                       className="media-slot"
                       style={{ aspectRatio: "9/16", maxHeight: "340px" }}
                     >
-                      <span className="media-slot-label">[THUMB_ATO_{romanNumerals[i]}]</span>
+                      <span className="font-display text-lg" style={{ color: "rgba(168,138,80,0.2)", fontWeight: 300 }}>
+                            {romanNumerals[i]}
+                          </span>
                     </div>
                     <div className="p-5">
-                      <div className="act-number mb-2">[ATO {romanNumerals[i]}]</div>
-                      <div className="headline-sm mb-2" style={{ color: "rgb(var(--foreground))" }}>[TÍTULO DO ATO]</div>
-                      <p className="tension-line">[LINHA DE TENSÃO]</p>
+                      <div className="act-number mb-2">ATO {romanNumerals[i]}</div>
                     </div>
                   </div>
                 </Reveal>
