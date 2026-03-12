@@ -20,7 +20,7 @@ const actsFallback = [
 
 export default async function EpisodiosPage() {
   const dbEpisodes = await prisma.episode.findMany({
-    orderBy: { publishedAt: "desc" }
+    orderBy: { publishedAt: "asc" }
   });
 
   const episodes = dbEpisodes.length > 0 ? dbEpisodes : actsFallback;

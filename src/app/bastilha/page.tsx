@@ -8,7 +8,7 @@ export default async function BastilhaPage() {
   const [characters, timeline, episodes, pinnedPosts] = await Promise.all([
     prisma.bastilhaCharacter.findMany({ orderBy: { sortOrder: "asc" }, take: 6 }),
     prisma.timelineEvent.findMany({ orderBy: { sortOrder: "asc" }, take: 4 }),
-    prisma.episode.findMany({ where: { featured: true }, orderBy: { publishedAt: "desc" }, take: 3 }),
+    prisma.episode.findMany({ where: { featured: true }, orderBy: { publishedAt: "asc" }, take: 3 }),
     prisma.wallPost.findMany({ where: { pinned: true }, orderBy: { createdAt: "desc" }, take: 2 })
   ]);
 

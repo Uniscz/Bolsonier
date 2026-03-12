@@ -13,7 +13,7 @@ export default async function HomePage() {
     }),
     prisma.episode.findMany({
       where: { featured: true },
-      orderBy: { publishedAt: "desc" },
+      orderBy: { publishedAt: "asc" },
       take: 3
     })
   ]);
