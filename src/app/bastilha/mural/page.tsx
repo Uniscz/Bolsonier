@@ -148,6 +148,58 @@ export default async function BastilhaMuralPage() {
           </div>
         </div>
       </section>
+
+      {/* ── LEITURAS EM CIRCULAÇÃO ────────────────────────── */}
+      <section className="section-space border-t" style={{ borderColor: "rgb(var(--border))" }}>
+        <div className="container-shell">
+          <div
+            className="p-8 md:p-10"
+            style={{
+              border: "1px solid rgba(168,138,80,0.12)",
+              background: "rgba(168,138,80,0.02)"
+            }}
+          >
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+              <div className="max-w-xl">
+                <div className="kicker mb-4">Leituras em circulação</div>
+                <p className="body-lg" style={{ color: "rgb(var(--muted))" }}>
+                  Parte do clima que atravessa a Bastilha nasce fora desta página. Comentários, reações e teorias em circulação pública nas redes da casa podem ser elevados ao arquivo, ao rumor da semana ou ao mural de prestígio.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 flex-shrink-0">
+                {[
+                  { href: "https://www.instagram.com/euinelegivel/", label: "Instagram" },
+                  { href: "https://www.tiktok.com/@euinelegivel", label: "TikTok" },
+                  { href: "https://www.facebook.com/profile.php?id=61573541386906", label: "Facebook" },
+                ].map((s) => (
+                  <a
+                    key={s.href}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 group"
+                    style={{ color: "rgb(var(--muted))" }}
+                  >
+                    <div
+                      className="h-px w-5 flex-shrink-0 transition-all duration-300 group-hover:w-8"
+                      style={{ background: "rgb(var(--gold-dim))" }}
+                    />
+                    <span
+                      className="text-sm transition-colors group-hover:text-gold"
+                      style={{ letterSpacing: "0.08em" }}
+                    >
+                      {s.label}
+                    </span>
+                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ opacity: 0.35 }}>
+                      <path d="M7 17L17 7M17 7H7M17 7v10" />
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

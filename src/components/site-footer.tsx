@@ -1,5 +1,11 @@
 import Link from "next/link";
 
+const socialLinks = [
+  { href: "https://www.tiktok.com/@euinelegivel", label: "TikTok" },
+  { href: "https://www.instagram.com/euinelegivel/", label: "Instagram" },
+  { href: "https://www.facebook.com/profile.php?id=61573541386906", label: "Facebook" },
+];
+
 export function SiteFooter() {
   const year = new Date().getFullYear();
   return (
@@ -19,7 +25,7 @@ export function SiteFooter() {
           <hr className="gold-rule flex-1" />
         </div>
 
-        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
+        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr_1fr]">
           <div className="space-y-4">
             <div
               className="font-display text-lg"
@@ -55,6 +61,29 @@ export function SiteFooter() {
               <Link href="/sobre" className="body-md hover:text-gold transition-colors">Sobre</Link>
               <Link href="/contato" className="body-md hover:text-gold transition-colors">Contato</Link>
               <Link href="/admin/login" className="body-md hover:text-gold transition-colors">Admin</Link>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <div className="kicker-muted">Circulação pública</div>
+            <p className="body-md text-xs mb-3" style={{ color: "rgb(var(--subtle))" }}>
+              Os atos, rumores e aparições da Bastilha seguem em circulação nas plataformas públicas da casa.
+            </p>
+            <div className="grid gap-2">
+              {socialLinks.map((s) => (
+                <a
+                  key={s.href}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="body-md hover:text-gold transition-colors flex items-center gap-2"
+                >
+                  {s.label}
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ opacity: 0.35 }}>
+                    <path d="M7 17L17 7M17 7H7M17 7v10" />
+                  </svg>
+                </a>
+              ))}
             </div>
           </div>
         </div>

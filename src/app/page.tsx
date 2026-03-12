@@ -267,6 +267,52 @@ export default async function HomePage() {
       </section>
 
       {/* ── SALÃO DOS RUMORES CTA ─────────────────────────────── */}
+      {/* ── CIRCULAÇÃO PÚBLICA ─────────────────────────────── */}
+      <section className="section-space border-t" style={{ borderColor: "rgb(var(--border))" }}>
+        <div className="container-shell">
+          <Reveal>
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+              <div className="max-w-xl">
+                <div className="kicker mb-4">Circulação pública</div>
+                <p className="body-lg" style={{ color: "rgb(var(--muted))" }}>
+                  A Bastilha não se encerra neste domínio. Seus atos, ecos e repercussões seguem em circulação pública nas plataformas da casa.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 flex-shrink-0">
+                {[
+                  { href: "https://www.tiktok.com/@euinelegivel", label: "TikTok" },
+                  { href: "https://www.instagram.com/euinelegivel/", label: "Instagram" },
+                  { href: "https://www.facebook.com/profile.php?id=61573541386906", label: "Facebook" },
+                ].map((s) => (
+                  <a
+                    key={s.href}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 group"
+                    style={{ color: "rgb(var(--muted))" }}
+                  >
+                    <div
+                      className="h-px w-5 flex-shrink-0 transition-all duration-300 group-hover:w-8"
+                      style={{ background: "rgb(var(--gold-dim))" }}
+                    />
+                    <span
+                      className="text-sm transition-colors group-hover:text-gold"
+                      style={{ letterSpacing: "0.08em" }}
+                    >
+                      {s.label}
+                    </span>
+                    <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ opacity: 0.35 }}>
+                      <path d="M7 17L17 7M17 7H7M17 7v10" />
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="section-space">
         <div className="container-shell">
           <Reveal>
