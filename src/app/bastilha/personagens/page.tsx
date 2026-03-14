@@ -1,13 +1,31 @@
 import { prisma } from "@/lib/prisma";
 import { Reveal } from "@/components/reveal";
-import { buildMetadata } from "@/lib/metadata";
+import type { Metadata } from "next";
+import { absoluteUrl } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
-export const metadata = buildMetadata({
-  title: "Personagens",
-  pathname: "/bastilha/personagens"
-});
+export const metadata: Metadata = {
+  title: "Personagens | A Bastilha de Bolsonier",
+  description:
+    "Dossiê completo dos personagens de A Bastilha de Bolsonier — Jairene de Bolsonier, Luísa Ignácia de Silvene, Alexandra de Moraes y Valença, Don Trumpetti Vittorio, Nicoletty Vittoria Trumpetti di Bolsonier, Domitila Rousselle Alcântara de Hylteon, Nicolau de Hylteon e Érienne de Hylteon.",
+  openGraph: {
+    title: "Personagens | A Bastilha de Bolsonier",
+    description:
+      "Dossiê completo dos personagens de A Bastilha de Bolsonier — série dramática brasileira criada por André Luiz de Almeida.",
+    url: absoluteUrl("/bastilha/personagens"),
+    type: "website",
+    locale: "pt_BR",
+    images: [{ url: absoluteUrl("/og-default.png"), width: 1200, height: 630, alt: "A Bastilha de Bolsonier — Personagens" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Personagens | A Bastilha de Bolsonier",
+    description: "Dossiê completo dos personagens de A Bastilha de Bolsonier.",
+    images: [absoluteUrl("/og-default.png")]
+  },
+  alternates: { canonical: absoluteUrl("/bastilha/personagens") }
+};
 
 const characterDescriptions: Record<string, string> = {
   "jairene-de-bolsonier": "Governa por presença, cálculo e autoridade de linhagem.",
@@ -149,6 +167,21 @@ export default async function PersonagensPage() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* ── ELENCO CENTRAL — SEMÂNTICO PARA SEO ─────────────── */}
+      <section className="sr-only" aria-label="Elenco central de A Bastilha de Bolsonier">
+        <h2>Personagens centrais de A Bastilha de Bolsonier</h2>
+        <ul>
+          <li><strong>Jairene de Bolsonier</strong> — Soberana da Bastilha. Governa por presença, cálculo e autoridade de linhagem.</li>
+          <li><strong>Luísa Ignácia de Silvene</strong> — Observadora da corte. Habituada a ler o desvio antes que ele se converta em escândalo.</li>
+          <li><strong>Alexandra de Moraes y Valença</strong> — Jurisdição pessoal. Presença jurídica e glacial, cercada de conveniência e ambiguidade estratégica.</li>
+          <li><strong>Don Trumpetti Vittorio</strong> — Heráldica do excesso. Oscilando entre prestígio remanescente, decadência íntima e vulnerabilidade pública.</li>
+          <li><strong>Nicoletty Vittoria Trumpetti di Bolsonier</strong> — Identidade incendiária. Associada à linhagem, ao escândalo e à instabilidade dos vínculos.</li>
+          <li><strong>Domitila Rousselle Alcântara de Hylteon</strong> — Gravidade ancestral. Em cuja compostura sobrevivem tradição, vigilância e memória de sangue.</li>
+          <li><strong>Nicolau de Hylteon</strong> — O desterrado. Sua simples reentrada restitui à corte aquilo que ela mais teme: memória.</li>
+          <li><strong>Érienne de Hylteon</strong> — Correntes invisíveis. Ligada às correntes que movem o destino da casa sem jamais se anunciar por inteiro.</li>
+        </ul>
       </section>
 
       {/* ── NOTA SOBRE RELAÇÕES ───────────────────────────────── */}

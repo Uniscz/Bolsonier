@@ -24,20 +24,28 @@ export function SiteFooter() {
           </span>
           <hr className="gold-rule flex-1" />
         </div>
-
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr_1fr]">
           <div className="space-y-4">
             <div
               className="font-display text-lg"
               style={{ color: "rgb(var(--foreground))", fontWeight: 300, letterSpacing: "0.05em" }}
             >
-              Bastilha de Bolsonier
+              A Bastilha de Bolsonier
             </div>
             <p className="body-md max-w-xs">
               Toda linhagem guarda um crime. Toda corte exige um sacrifício.
             </p>
+            <Link
+              href="/obra/a-bastilha-de-bolsonier"
+              className="body-md text-xs hover:text-gold transition-colors inline-flex items-center gap-2"
+              style={{ color: "rgb(var(--subtle))" }}
+            >
+              Página oficial da obra
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ opacity: 0.5 }}>
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </Link>
           </div>
-
           <div className="space-y-3">
             <div className="kicker-muted">Universo</div>
             <div className="grid gap-2">
@@ -47,23 +55,31 @@ export function SiteFooter() {
               <Link href="/episodios" className="body-md hover:text-gold transition-colors">Atos</Link>
             </div>
           </div>
-
           <div className="space-y-3">
             <div className="kicker-muted">Comunidade</div>
             <div className="grid gap-2">
               <Link href="/bastilha/mural" className="body-md hover:text-gold transition-colors">Salão dos Rumores</Link>
             </div>
           </div>
-
           <div className="space-y-3">
             <div className="kicker-muted">Institucional</div>
             <div className="grid gap-2">
+              <Link href="/obra/a-bastilha-de-bolsonier" className="body-md hover:text-gold transition-colors">A obra</Link>
               <Link href="/sobre" className="body-md hover:text-gold transition-colors">Sobre</Link>
               <Link href="/contato" className="body-md hover:text-gold transition-colors">Contato</Link>
-              <Link href="/admin/login" className="body-md hover:text-gold transition-colors">Admin</Link>
+              <a
+                href="https://www.imdb.com/title/tt40604167/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="body-md hover:text-gold transition-colors flex items-center gap-1.5"
+              >
+                IMDb
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ opacity: 0.35 }}>
+                  <path d="M7 17L17 7M17 7H7M17 7v10" />
+                </svg>
+              </a>
             </div>
           </div>
-
           <div className="space-y-3">
             <div className="kicker-muted">Circulação pública</div>
             <p className="body-md text-xs mb-3" style={{ color: "rgb(var(--subtle))" }}>
@@ -87,19 +103,18 @@ export function SiteFooter() {
             </div>
           </div>
         </div>
-
         <div
           className="mt-12 border-t pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
           style={{ borderColor: "rgb(var(--border))" }}
         >
-          <span
-            className="text-xs uppercase"
-            style={{ letterSpacing: "0.2em", color: "rgb(var(--subtle))" }}
-          >
-            Uma obra autoral de Bolsonier Studios
-          </span>
-          <span
+          <p
             className="text-xs"
+            style={{ letterSpacing: "0.08em", color: "rgb(var(--subtle))", maxWidth: "42rem" }}
+          >
+            A Bastilha de Bolsonier é uma obra audiovisual criada por André Luiz de Almeida e produzida por Bolsonier Studios.
+          </p>
+          <span
+            className="text-xs flex-shrink-0"
             style={{ letterSpacing: "0.15em", color: "rgb(var(--subtle))" }}
           >
             © {year}

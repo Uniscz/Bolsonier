@@ -1,8 +1,31 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { Reveal } from "@/components/reveal";
+import type { Metadata } from "next";
+import { absoluteUrl } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "A Bastilha | A Bastilha de Bolsonier",
+  description:
+    "Conheça o universo de A Bastilha de Bolsonier — a corte, o lore, os personagens e a estrutura narrativa da série dramática brasileira criada por André Luiz de Almeida.",
+  openGraph: {
+    title: "A Bastilha | A Bastilha de Bolsonier",
+    description: "Conheça o universo de A Bastilha de Bolsonier — a corte, o lore e a estrutura narrativa da série.",
+    url: absoluteUrl("/bastilha"),
+    type: "website",
+    locale: "pt_BR",
+    images: [{ url: absoluteUrl("/og-default.png"), width: 1200, height: 630, alt: "A Bastilha de Bolsonier" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "A Bastilha | A Bastilha de Bolsonier",
+    description: "Conheça o universo de A Bastilha de Bolsonier.",
+    images: [absoluteUrl("/og-default.png")]
+  },
+  alternates: { canonical: absoluteUrl("/bastilha") }
+};
 
 export default async function BastilhaPage() {
   const [characters, timeline, episodes, pinnedPosts] = await Promise.all([

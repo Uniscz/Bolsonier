@@ -1,13 +1,30 @@
 import { prisma } from "@/lib/prisma";
 import { Reveal } from "@/components/reveal";
-import { buildMetadata } from "@/lib/metadata";
+import type { Metadata } from "next";
+import { absoluteUrl } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
-export const metadata = buildMetadata({
-  title: "Cronologia",
-  pathname: "/bastilha/cronologia"
-});
+export const metadata: Metadata = {
+  title: "Cronologia | A Bastilha de Bolsonier",
+  description:
+    "Cronologia completa dos eventos de A Bastilha de Bolsonier — série dramática brasileira criada por André Luiz de Almeida. A ordem dos acontecimentos na corte.",
+  openGraph: {
+    title: "Cronologia | A Bastilha de Bolsonier",
+    description: "Cronologia completa dos eventos de A Bastilha de Bolsonier.",
+    url: absoluteUrl("/bastilha/cronologia"),
+    type: "website",
+    locale: "pt_BR",
+    images: [{ url: absoluteUrl("/og-default.png"), width: 1200, height: 630, alt: "A Bastilha de Bolsonier — Cronologia" }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cronologia | A Bastilha de Bolsonier",
+    description: "Cronologia completa dos eventos de A Bastilha de Bolsonier.",
+    images: [absoluteUrl("/og-default.png")]
+  },
+  alternates: { canonical: absoluteUrl("/bastilha/cronologia") }
+};
 
 const timelineFallback = [
   { id: "1", slug: "i", dateLabel: "I", title: "A fundação da aparência", body: "A Bastilha se apresenta como casa de prestígio, disciplina e autoridade simbólica.", important: true, sortOrder: 1 },
