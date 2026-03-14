@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { Reveal } from "@/components/reveal";
 import type { Metadata } from "next";
-import { absoluteUrl } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -12,18 +11,18 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Cronologia | A Bastilha de Bolsonier",
     description: "Cronologia completa dos eventos de A Bastilha de Bolsonier.",
-    url: absoluteUrl("/bastilha/cronologia"),
+    url: "/bastilha/cronologia",
     type: "website",
     locale: "pt_BR",
-    images: [{ url: absoluteUrl("/og-default.png"), width: 1200, height: 630, alt: "A Bastilha de Bolsonier — Cronologia" }]
+    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "A Bastilha de Bolsonier — Cronologia" }]
   },
   twitter: {
     card: "summary_large_image",
     title: "Cronologia | A Bastilha de Bolsonier",
     description: "Cronologia completa dos eventos de A Bastilha de Bolsonier.",
-    images: [absoluteUrl("/og-default.png")]
+    images: ["/og-default.png"]
   },
-  alternates: { canonical: absoluteUrl("/bastilha/cronologia") }
+  alternates: { canonical: "/bastilha/cronologia" }
 };
 
 const timelineFallback = [

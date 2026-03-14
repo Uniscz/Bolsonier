@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { Reveal } from "@/components/reveal";
 import type { Metadata } from "next";
-import { absoluteUrl } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -13,18 +12,18 @@ export const metadata: Metadata = {
     title: "Personagens | A Bastilha de Bolsonier",
     description:
       "Dossiê completo dos personagens de A Bastilha de Bolsonier — série dramática brasileira criada por André Luiz de Almeida.",
-    url: absoluteUrl("/bastilha/personagens"),
+    url: "/bastilha/personagens",
     type: "website",
     locale: "pt_BR",
-    images: [{ url: absoluteUrl("/og-default.png"), width: 1200, height: 630, alt: "A Bastilha de Bolsonier — Personagens" }]
+    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "A Bastilha de Bolsonier — Personagens" }]
   },
   twitter: {
     card: "summary_large_image",
     title: "Personagens | A Bastilha de Bolsonier",
     description: "Dossiê completo dos personagens de A Bastilha de Bolsonier.",
-    images: [absoluteUrl("/og-default.png")]
+    images: ["/og-default.png"]
   },
-  alternates: { canonical: absoluteUrl("/bastilha/personagens") }
+  alternates: { canonical: "/bastilha/personagens" }
 };
 
 const characterDescriptions: Record<string, string> = {

@@ -4,13 +4,13 @@ import "./globals.css";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { buildOrganizationSchema, buildTVSeriesSchema } from "@/lib/metadata";
-import { absoluteUrl } from "@/lib/utils";
 
 const fontSans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   weight: ["300", "400", "500", "600"]
 });
+
 const fontDisplay = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-display",
@@ -18,8 +18,12 @@ const fontDisplay = Cormorant_Garamond({
   style: ["normal", "italic"]
 });
 
+// metadataBase resolve todas as URLs relativas automaticamente
+// NEXT_PUBLIC_SITE_URL deve estar definido no Vercel como https://www.bolsonier.art
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.bolsonier.art"
+  ),
   title: {
     default: "A Bastilha de Bolsonier | Série dramática brasileira | Bolsonier Studios",
     template: "%s — A Bastilha de Bolsonier"
@@ -43,13 +47,13 @@ export const metadata: Metadata = {
     title: "A Bastilha de Bolsonier | Série dramática brasileira | Bolsonier Studios",
     description:
       "A Bastilha de Bolsonier é uma série dramática brasileira criada por André Luiz de Almeida. Conheça personagens, atos, cronologia e o universo oficial da obra.",
-    url: absoluteUrl("/"),
+    url: "/",
     siteName: "Bolsonier Studios",
     locale: "pt_BR",
     type: "website",
     images: [
       {
-        url: absoluteUrl("/og-default.png"),
+        url: "/og-default.png",
         width: 1200,
         height: 630,
         alt: "A Bastilha de Bolsonier — Poster oficial"
@@ -61,10 +65,10 @@ export const metadata: Metadata = {
     title: "A Bastilha de Bolsonier | Série dramática brasileira | Bolsonier Studios",
     description:
       "A Bastilha de Bolsonier é uma série dramática brasileira criada por André Luiz de Almeida. Conheça personagens, atos, cronologia e o universo oficial da obra.",
-    images: [absoluteUrl("/og-default.png")]
+    images: ["/og-default.png"]
   },
   alternates: {
-    canonical: absoluteUrl("/")
+    canonical: "/"
   },
   robots: {
     index: true,

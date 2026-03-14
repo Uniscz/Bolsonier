@@ -2,7 +2,6 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { Reveal } from "@/components/reveal";
 import type { Metadata } from "next";
-import { absoluteUrl } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -14,12 +13,12 @@ export const metadata: Metadata = {
     title: "A Bastilha de Bolsonier | Página oficial da obra",
     description:
       "Página oficial de A Bastilha de Bolsonier — série dramática brasileira criada por André Luiz de Almeida e produzida por Bolsonier Studios.",
-    url: absoluteUrl("/obra/a-bastilha-de-bolsonier"),
+    url: "/obra/a-bastilha-de-bolsonier",
     type: "website",
     locale: "pt_BR",
     images: [
       {
-        url: absoluteUrl("/og-default.png"),
+        url: "/og-default.png",
         width: 1200,
         height: 630,
         alt: "A Bastilha de Bolsonier — Poster oficial"
@@ -31,10 +30,10 @@ export const metadata: Metadata = {
     title: "A Bastilha de Bolsonier | Página oficial da obra",
     description:
       "Página oficial de A Bastilha de Bolsonier — série dramática brasileira criada por André Luiz de Almeida.",
-    images: [absoluteUrl("/og-default.png")]
+    images: ["/og-default.png"]
   },
   alternates: {
-    canonical: absoluteUrl("/obra/a-bastilha-de-bolsonier")
+    canonical: "/obra/a-bastilha-de-bolsonier"
   }
 };
 
@@ -248,8 +247,6 @@ export default async function ObraPage() {
                 <article
                   className="group p-6 transition-colors"
                   style={{ background: "rgb(var(--panel))" }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "rgba(168,138,80,0.03)")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "rgb(var(--panel))")}
                 >
                   <div className="flex gap-5 items-start">
                     {char.imageUrl ? (
@@ -470,8 +467,6 @@ export default async function ObraPage() {
                         borderColor: "rgba(168,138,80,0.1)",
                         background: "rgb(var(--panel))"
                       }}
-                      onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(168,138,80,0.3)")}
-                      onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(168,138,80,0.1)")}
                     >
                       <div>
                         <div className="font-display text-sm mb-0.5" style={{ color: "rgb(var(--foreground))", fontWeight: 300 }}>
@@ -517,8 +512,6 @@ export default async function ObraPage() {
                     borderColor: "rgba(168,138,80,0.15)",
                     background: "rgb(var(--panel))"
                   }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(168,138,80,0.4)")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "rgba(168,138,80,0.15)")}
                 >
                   <div>
                     <div className="text-xs uppercase mb-1" style={{ letterSpacing: "0.12em", color: "rgb(var(--subtle))" }}>

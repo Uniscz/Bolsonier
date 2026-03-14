@@ -32,6 +32,9 @@ export function formatDate(date: Date | string) {
 }
 
 export function absoluteUrl(pathname = "/") {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  // Usa a variável de ambiente se definida, senão usa o domínio real de produção
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    "https://www.bolsonier.art";
   return new URL(pathname, siteUrl).toString();
 }

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "A Bastilha de Bolsonier é uma série dramática brasileira criada por André Luiz de Almeida. Conheça personagens, atos, cronologia e o universo oficial da obra.",
   alternates: {
-    canonical: process.env.NEXT_PUBLIC_SITE_URL || "https://www.bolsonier.art"
+    canonical: "/"
   }
 };
 
@@ -155,8 +155,7 @@ export default async function HomePage() {
                         rel="noopener noreferrer"
                         className="font-display text-sm transition-colors"
                         style={{ color: "rgb(var(--gold))", fontWeight: 300, letterSpacing: "0.02em" }}
-                        onMouseEnter={(e) => ((e.target as HTMLElement).style.opacity = "0.75")}
-                        onMouseLeave={(e) => ((e.target as HTMLElement).style.opacity = "1")}
+
                       >
                         tt40604167 ↗
                       </a>
@@ -423,8 +422,7 @@ export default async function HomePage() {
                   rel={item.external ? "noopener noreferrer" : undefined}
                   className="group block p-8 transition-colors h-full"
                   style={{ background: "rgb(var(--panel))" }}
-                  onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "rgba(168,138,80,0.04)")}
-                  onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "rgb(var(--panel))")}
+
                 >
                   <div className="flex items-start justify-between gap-4 mb-4">
                     <span
